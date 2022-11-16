@@ -17,4 +17,11 @@
     <string name="strikes">Strikes</string>
     <string name="balls">Balls</string>
     <string name="total">Total</string>
+    <string-array name="pitch_types">
+        <item>Four-Seam</item>
+        <item>Two-Seam</item>
+        <item>Slider</item>
+        <item>Curveball</item>
+        <item>Changeup</item>
+    </string-array>
 </resources>
