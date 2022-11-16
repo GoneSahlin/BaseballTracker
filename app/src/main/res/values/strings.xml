@@ -12,4 +12,9 @@
     <string name="curveball">Curveball</string>
     <string name="change_up">Change Up</string>
     <string name="select_pitch">Select Pitch</string>
+    <string name="pitch">Pitch</string>
+    <string name="all">All</string>
+    <string name="strikes">Strikes</string>
+    <string name="balls">Balls</string>
+    <string name="total">Total</string>
 </resources>

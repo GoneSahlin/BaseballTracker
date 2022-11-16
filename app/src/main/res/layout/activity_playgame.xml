@@ -27,11 +27,105 @@
         app:layout_constraintTop_toBottomOf="@id/away_score"
         android:textSize="@dimen/scoreboard_text_size" />
 
+    <GridLayout
+        android:id="@+id/stats_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:layout_marginTop="72dp"
+        android:columnCount="4"
+        android:rowCount="6"
+        android:useDefaultMargins="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/home_score" >
+
+        <TextView
+            android:id="@+id/stats_header_pitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pitch"
+            android:textSize="@dimen/stats_text_size" />
+
+        <TextView
+            android:id="@+id/stats_header_strikes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/strikes"
+            android:textSize="@dimen/stats_text_size" />
+
+        <TextView
+            android:id="@+id/stats_header_balls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/balls"
+            android:textSize="@dimen/stats_text_size" />
+
+        <TextView
+            android:id="@+id/stats_header_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/total"
+            android:textSize="@dimen/stats_text_size" />
+
+        <TextView
+            android:id="@+id/all_index"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/all"
+            android:textSize="@dimen/stats_text_size" />
+
+        <TextView
+            android:id="@+id/all_strikes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/stats_text_size" />
+
+        <TextView
+            android:id="@+id/all_balls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/stats_text_size" />
+
+        <TextView
+            android:id="@+id/all_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/stats_text_size" />
+
+        <TextView
+            android:id="@+id/four_seam_index"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/four_seam"
+            android:textSize="@dimen/stats_text_size" />
+
+        <TextView
+            android:id="@+id/four_seam_strikes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/stats_text_size" />
+
+        <TextView
+            android:id="@+id/four_seam_balls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/stats_text_size" />
+
+        <TextView
+            android:id="@+id/four_seam_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/stats_text_size" />
+    </GridLayout>
+
     <LinearLayout
         android:id="@+id/strike_ball_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/home_score"
+        app:layout_constraintTop_toBottomOf="@id/stats_layout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

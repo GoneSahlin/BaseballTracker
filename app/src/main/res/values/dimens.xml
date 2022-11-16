@@ -4,4 +4,5 @@
     <dimen name="play_game_button_text_size">40dp</dimen>
     <dimen name="select_pitch_text_size">40dp</dimen>
     <dimen name="select_pitch_title_text_size">50dp</dimen>
+    <dimen name="stats_text_size">20dp</dimen>
 </resources>
