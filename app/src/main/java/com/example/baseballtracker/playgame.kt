@@ -17,9 +17,11 @@ class playgame : AppCompatActivity() {
     private lateinit var strikeArray: Array<Int>
     private lateinit var ballArray: Array<Int>
     private lateinit var totalArray: Array<Int>
+    private lateinit var pitchTypes: Array<String>
     var allStrikes: Int = 0
     var allBalls: Int = 0
     var allPitches: Int = 0
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +35,13 @@ class playgame : AppCompatActivity() {
         strikeButton.setOnClickListener { onStrikeButtonClicked() }
         ballButton.setOnClickListener { onBallButtonClicked() }
         inPlayButton.setOnClickListener { onInPlayButtonClicked() }
+
+        // initialize arrays
+        pitchTypes = resources.getStringArray(R.array.pitch_types)
+        strikeArray = Array<Int>(pitchTypes.size) {0}
+        ballArray = Array<Int>(pitchTypes.size) {0}
+        totalArray = Array<Int>(pitchTypes.size) {0}
+
     }
 
     private fun onStrikeButtonClicked() {
