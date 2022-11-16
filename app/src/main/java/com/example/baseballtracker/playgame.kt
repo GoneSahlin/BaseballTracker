@@ -17,6 +17,9 @@ class playgame : AppCompatActivity() {
     private lateinit var strikeArray: Array<Int>
     private lateinit var ballArray: Array<Int>
     private lateinit var totalArray: Array<Int>
+    var allStrikes: Int = 0
+    var allBalls: Int = 0
+    var allPitches: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +39,10 @@ class playgame : AppCompatActivity() {
         startSelectPitch()
 
         if (pitchTypeIndex != -1) {
-
+            strikeArray[pitchTypeIndex]++
+            totalArray[pitchTypeIndex]++
+            allStrikes++
+            allPitches++
         }
     }
 
