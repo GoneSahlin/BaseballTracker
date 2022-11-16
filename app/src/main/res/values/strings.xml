@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Baseball Tracker</string>
     <string name="play_ball">Play Ball</string>
+    <string name="home_score">Home: %d</string>
+    <string name="away_score">Away: %d</string>
+    <string name="in_play">In Play</string>
+    <string name="ball">Ball</string>
+    <string name="strike">Strike</string>
 </resources>
