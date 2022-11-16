@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Baseball Tracker</string>
+    <string name="play_ball">Play Ball</string>
 </resources>

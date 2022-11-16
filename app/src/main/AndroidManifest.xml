@@ -13,6 +13,54 @@
         android:theme="@style/Theme.BaseballTracker"
         tools:targetApi="31">
         <activity
+            android:name=".MainSettings"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value=""
+                android:parentActivityName=".MainActivity"/>
+        </activity>
+        <activity
+            android:name=".Stats"
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".playgame"
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Batting"
+            android:exported="false"
+            android:parentActivityName=".PracticeMain">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Pitching"
+            android:exported="false"
+            android:parentActivityName=".PracticeMain">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".PracticeMain"
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

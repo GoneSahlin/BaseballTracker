@@ -4,15 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/bbhome"
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <TextView
+           android:id="@+id/title"
+           style="@style/StartText"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerHorizontal="true"
+           android:text="Baseball Stat\nTracker"
+           android:gravity="center"
+           android:textSize="47dp"
+           />
+
+
+       <Button
+           android:id="@+id/playGame"
+           android:theme="@style/StartButtons"
+           android:layout_height="wrap_content"
+           android:layout_width="match_parent"
+           android:layout_below="@id/title"
+           android:text="@string/play_ball"
+           />
+       <Button
+           android:id="@+id/practice"
+           android:theme="@style/StartButtons"
+           android:layout_height="wrap_content"
+           android:layout_width="match_parent"
+           android:layout_below="@id/playGame"
+           android:text="Practice"
+           />
+       <Button
+           android:id="@+id/stats"
+           android:theme="@style/StartButtons"
+           android:layout_height="wrap_content"
+           android:layout_width="match_parent"
+           android:layout_below="@id/practice"
+           android:text="stats"
+           />
+       <Button
+           android:id="@+id/settings"
+           android:theme="@style/StartButtons"
+           android:layout_height="wrap_content"
+           android:layout_width="match_parent"
+           android:layout_below="@id/stats"
+           android:text="settings"
+           />
+
+
+
+
+   </RelativeLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
