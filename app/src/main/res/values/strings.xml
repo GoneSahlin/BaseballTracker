@@ -6,4 +6,10 @@
     <string name="in_play">In Play</string>
     <string name="ball">Ball</string>
     <string name="strike">Strike</string>
+    <string name="four_seam">4-Seam</string>
+    <string name="two_seam">2-Seam</string>
+    <string name="slider">Slider</string>
+    <string name="curveball">Curveball</string>
+    <string name="change_up">Change Up</string>
+    <string name="select_pitch">Select Pitch</string>
 </resources>

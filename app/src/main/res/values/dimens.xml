@@ -2,4 +2,6 @@
 <resources>
     <dimen name="scoreboard_text_size">30dp</dimen>
     <dimen name="play_game_button_text_size">40dp</dimen>
+    <dimen name="select_pitch_text_size">40dp</dimen>
+    <dimen name="select_pitch_title_text_size">50dp</dimen>
 </resources>
