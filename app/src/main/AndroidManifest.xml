@@ -36,7 +36,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".playgame"
+            android:name=".PlayGame"
             android:exported="false"
             android:parentActivityName=".MainActivity">
             <meta-data

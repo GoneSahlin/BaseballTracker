@@ -6,10 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 
 
-class playgame : AppCompatActivity() {
+class PlayGame : AppCompatActivity() {
     private var pitchTypeIndex: Int = -1
     private lateinit var strikeButton: Button
     private lateinit var ballButton: Button
