@@ -47,7 +47,14 @@ class playgame : AppCompatActivity() {
     }
 
     private fun onBallButtonClicked() {
+        startSelectPitch()
 
+        if (pitchTypeIndex != -1) {
+            ballArray[pitchTypeIndex]++
+            totalArray[pitchTypeIndex]++
+            allBalls++
+            allPitches++
+        }
     }
 
     private fun onInPlayButtonClicked() {
