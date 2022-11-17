@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.widget.Button
 import android.widget.GridLayout
 import android.widget.LinearLayout
@@ -25,6 +26,9 @@ class PlayGame : AppCompatActivity() {
     private lateinit var strikeTextViewArray: Array<TextView>
     private lateinit var ballTextViewArray: Array<TextView>
     private lateinit var totalTextViewArray: Array<TextView>
+    private lateinit var allStrikesTextView: TextView
+    private lateinit var allBallsTextView: TextView
+    private lateinit var allTotalTextView: TextView
     var allStrikes: Int = 0
     var allBalls: Int = 0
     var allPitches: Int = 0
@@ -69,10 +73,12 @@ class PlayGame : AppCompatActivity() {
     }
 
     private fun createTextView(textView: TextView) {
-        textView.layoutParams = LinearLayout.LayoutParams(
+        val params = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
+        params.gravity = Gravity.RIGHT
+        textView.layoutParams = params
     }
 
     private fun onStrikeButtonClicked() {
@@ -84,6 +90,8 @@ class PlayGame : AppCompatActivity() {
             allStrikes++
             allPitches++
         }
+
+        displayStats()
     }
 
     private fun onBallButtonClicked() {
@@ -95,6 +103,9 @@ class PlayGame : AppCompatActivity() {
             allBalls++
             allPitches++
         }
+
+        displayStats()
+
     }
 
     private fun onInPlayButtonClicked() {
@@ -118,8 +129,14 @@ class PlayGame : AppCompatActivity() {
     }
 
     private fun displayStats() {
+
+
         for (i in pitchTypes.indices) {
             pitchTextViewArray[i].text = pitchTypes[i]
+            strikeTextViewArray[i].text = strikeArray[i].toString()
+            ballTextViewArray[i].text = ballArray[i].toString()
+            totalTextViewArray[i].text = totalArray[i].toString()
+
 //            strikeTextViewArray
         }
     }
