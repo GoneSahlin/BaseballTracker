@@ -8,7 +8,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context=".SelectPitch">
+    tools:context=".SelectPitch"
+    android:background="@drawable/bbhome">
 
 
     <TextView
