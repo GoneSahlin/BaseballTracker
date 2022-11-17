@@ -7,6 +7,63 @@
     tools:context=".Batting"
     android:background="@drawable/bbhome">
 
+    <!--    TODO: we need a drop down for players
+                  Drop down for pitches
+
+
+
+    -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+
+        <Spinner
+            android:gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pitcher"
+            />
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/bppichBall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginLeft="5dp"
+
+
+                android:text="Ball" />
+
+            <Button
+                android:id="@+id/bppitchStrike"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Strike"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/bpinplay"
+                android:text="In Play"/>
+        </LinearLayout>
+
+
+
+            />
+
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
