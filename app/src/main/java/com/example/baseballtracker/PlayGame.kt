@@ -29,10 +29,14 @@ class PlayGame : AppCompatActivity() {
     private lateinit var allStrikesTextView: TextView
     private lateinit var allBallsTextView: TextView
     private lateinit var allTotalTextView: TextView
-    var strike = true
-    var allStrikes: Int = 0
-    var allBalls: Int = 0
-    var allPitches: Int = 0
+    private lateinit var awayScoreTextView: TextView
+    private lateinit var homeScoreTextView: TextView
+    private var strike = true
+    private var allStrikes: Int = 0
+    private var allBalls: Int = 0
+    private var allPitches: Int = 0
+    private var runsAway: Int = 0
+    private var runsHome: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,7 +77,16 @@ class PlayGame : AppCompatActivity() {
             layout.addView(totalTextViewArray[i])
         }
 
+        val runForAwayButton = findViewById<Button>(R.id.run_for_away_button)
+        val runForHomeButton = findViewById<Button>(R.id.run_for_home_button)
+        runForAwayButton.setOnClickListener { runForAwayClicked() }
+        runForHomeButton.setOnClickListener { runForHomeClicked() }
+
+        awayScoreTextView = findViewById(R.id.away_score)
+        homeScoreTextView = findViewById(R.id.home_score)
+
         displayStats()
+        displayScore()
     }
 
     private fun createTextView(textView: TextView) {
@@ -81,7 +94,8 @@ class PlayGame : AppCompatActivity() {
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
-        params.gravity = Gravity.RIGHT
+        params.gravity = Gravity.CLIP_HORIZONTAL
+        textView.gravity = Gravity.RIGHT
         textView.layoutParams = params
     }
 
@@ -134,6 +148,21 @@ class PlayGame : AppCompatActivity() {
 
 //            strikeTextViewArray
         }
+    }
+
+    private fun displayScore() {
+        awayScoreTextView.text = getString(R.string.away_score, runsAway)
+        homeScoreTextView.text = getString(R.string.home_score, runsHome)
+    }
+
+    private fun runForAwayClicked() {
+        runsAway++
+        displayScore()
+    }
+
+    private fun runForHomeClicked() {
+        runsHome++
+        displayScore()
     }
 
     private fun onInPlayButtonClicked() {

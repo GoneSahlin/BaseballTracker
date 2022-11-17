@@ -17,6 +17,8 @@
     <string name="strikes">Strikes</string>
     <string name="balls">Balls</string>
     <string name="total">Total</string>
+    <string name="run_for_home">Run for Home</string>
+    <string name="run_for_away">Run for Away</string>
     <string-array name="pitch_types">
         <item>Four-Seam</item>
         <item>Two-Seam</item>
