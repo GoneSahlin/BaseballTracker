@@ -29,6 +29,7 @@ class PlayGame : AppCompatActivity() {
     private lateinit var allStrikesTextView: TextView
     private lateinit var allBallsTextView: TextView
     private lateinit var allTotalTextView: TextView
+    var strike = true
     var allStrikes: Int = 0
     var allBalls: Int = 0
     var allPitches: Int = 0
@@ -54,6 +55,9 @@ class PlayGame : AppCompatActivity() {
 
         // add stat textViews
         val layout = findViewById<GridLayout>(R.id.stats_layout)
+        allStrikesTextView = findViewById(R.id.all_strikes)
+        allBallsTextView = findViewById(R.id.all_balls)
+        allTotalTextView = findViewById(R.id.all_total)
         pitchTextViewArray = Array<TextView>(pitchTypes.size) { TextView(this) }
         strikeTextViewArray = Array<TextView>(pitchTypes.size) { TextView(this) }
         ballTextViewArray = Array<TextView>(pitchTypes.size) { TextView(this) }
@@ -82,37 +86,13 @@ class PlayGame : AppCompatActivity() {
     }
 
     private fun onStrikeButtonClicked() {
-        startSelectPitch()
-
-        if (pitchTypeIndex != -1) {
-            strikeArray[pitchTypeIndex]++
-            totalArray[pitchTypeIndex]++
-            allStrikes++
-            allPitches++
-        }
-
-        displayStats()
+        strike = true;
+        val intent = Intent(this, SelectPitch::class.java)
+        selectPitchResultLauncher.launch(intent)
     }
 
     private fun onBallButtonClicked() {
-        startSelectPitch()
-
-        if (pitchTypeIndex != -1) {
-            ballArray[pitchTypeIndex]++
-            totalArray[pitchTypeIndex]++
-            allBalls++
-            allPitches++
-        }
-
-        displayStats()
-
-    }
-
-    private fun onInPlayButtonClicked() {
-
-    }
-
-    private fun startSelectPitch() {
+        strike = false
         val intent = Intent(this, SelectPitch::class.java)
         selectPitchResultLauncher.launch(intent)
     }
@@ -120,15 +100,30 @@ class PlayGame : AppCompatActivity() {
     val selectPitchResultLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            // Create the "on" button color based on the chosen color ID from ColorActivity
             pitchTypeIndex = result.data!!.getIntExtra(PITCH_TYPE, -1)
-//            pitchType = resources.getStringArray(R.array.pitch_types)[pitchTypeIndex]
+
+            if (pitchTypeIndex != -1) {
+                if (strike) {
+                    strikeArray[pitchTypeIndex]++
+                    allStrikes++
+                } else {
+                    ballArray[pitchTypeIndex]++
+                    allBalls++
+                }
+                totalArray[pitchTypeIndex]++
+                allPitches++
+            }
         } else {
             pitchTypeIndex = -1
         }
+        displayStats()
     }
 
     private fun displayStats() {
+
+        allStrikesTextView.text = allStrikes.toString()
+        allBallsTextView.text = allBalls.toString()
+        allTotalTextView.text = allPitches.toString()
 
 
         for (i in pitchTypes.indices) {
@@ -139,5 +134,9 @@ class PlayGame : AppCompatActivity() {
 
 //            strikeTextViewArray
         }
+    }
+
+    private fun onInPlayButtonClicked() {
+
     }
 }
