@@ -95,30 +95,30 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/stats_text_size" />
 
-        <TextView
-            android:id="@+id/four_seam_index"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/four_seam"
-            android:textSize="@dimen/stats_text_size" />
+<!--        <TextView-->
+<!--            android:id="@+id/four_seam_index"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/four_seam"-->
+<!--            android:textSize="@dimen/stats_text_size" />-->
 
-        <TextView
-            android:id="@+id/four_seam_strikes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/stats_text_size" />
+<!--        <TextView-->
+<!--            android:id="@+id/four_seam_strikes"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="@dimen/stats_text_size" />-->
 
-        <TextView
-            android:id="@+id/four_seam_balls"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/stats_text_size" />
+<!--        <TextView-->
+<!--            android:id="@+id/four_seam_balls"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="@dimen/stats_text_size" />-->
 
-        <TextView
-            android:id="@+id/four_seam_total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/stats_text_size" />
+<!--        <TextView-->
+<!--            android:id="@+id/four_seam_total"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="@dimen/stats_text_size" />-->
     </GridLayout>
 
     <LinearLayout

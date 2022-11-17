@@ -1,10 +1,14 @@
 package com.example.baseballtracker
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.GridLayout
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 
 
@@ -17,10 +21,13 @@ class PlayGame : AppCompatActivity() {
     private lateinit var ballArray: Array<Int>
     private lateinit var totalArray: Array<Int>
     private lateinit var pitchTypes: Array<String>
+    private lateinit var pitchTextViewArray: Array<TextView>
+    private lateinit var strikeTextViewArray: Array<TextView>
+    private lateinit var ballTextViewArray: Array<TextView>
+    private lateinit var totalTextViewArray: Array<TextView>
     var allStrikes: Int = 0
     var allBalls: Int = 0
     var allPitches: Int = 0
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +47,32 @@ class PlayGame : AppCompatActivity() {
         strikeArray = Array<Int>(pitchTypes.size) {0}
         ballArray = Array<Int>(pitchTypes.size) {0}
         totalArray = Array<Int>(pitchTypes.size) {0}
+
+        // add stat textViews
+        val layout = findViewById<GridLayout>(R.id.stats_layout)
+        pitchTextViewArray = Array<TextView>(pitchTypes.size) { TextView(this) }
+        strikeTextViewArray = Array<TextView>(pitchTypes.size) { TextView(this) }
+        ballTextViewArray = Array<TextView>(pitchTypes.size) { TextView(this) }
+        totalTextViewArray = Array<TextView>(pitchTypes.size) { TextView(this) }
+        for (i in pitchTypes.indices) {
+            createTextView(pitchTextViewArray[i])
+            createTextView(strikeTextViewArray[i])
+            createTextView(ballTextViewArray[i])
+            createTextView(totalTextViewArray[i])
+            layout.addView(pitchTextViewArray[i])
+            layout.addView(strikeTextViewArray[i])
+            layout.addView(ballTextViewArray[i])
+            layout.addView(totalTextViewArray[i])
+        }
+
+        displayStats()
+    }
+
+    private fun createTextView(textView: TextView) {
+        textView.layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
     }
 
     private fun onStrikeButtonClicked() {
@@ -77,10 +110,17 @@ class PlayGame : AppCompatActivity() {
         ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             // Create the "on" button color based on the chosen color ID from ColorActivity
-            pitchTypeIndex = result.data!!.getIntExtra(PITCH_TYPE, 0)
+            pitchTypeIndex = result.data!!.getIntExtra(PITCH_TYPE, -1)
 //            pitchType = resources.getStringArray(R.array.pitch_types)[pitchTypeIndex]
         } else {
             pitchTypeIndex = -1
+        }
+    }
+
+    private fun displayStats() {
+        for (i in pitchTypes.indices) {
+            pitchTextViewArray[i].text = pitchTypes[i]
+//            strikeTextViewArray
         }
     }
 }

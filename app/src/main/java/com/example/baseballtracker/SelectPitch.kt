@@ -1,5 +1,6 @@
 package com.example.baseballtracker
 
+import android.content.Intent
 import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -43,6 +44,9 @@ class SelectPitch : AppCompatActivity() {
     }
 
     private fun onButtonClicked(i: Int) {
-
+        val intent = Intent()
+        intent.putExtra(PITCH_TYPE, i)
+        setResult(RESULT_OK, intent)
+        finish()
     }
 }
