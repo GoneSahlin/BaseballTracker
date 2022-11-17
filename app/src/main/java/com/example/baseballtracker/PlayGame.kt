@@ -40,7 +40,6 @@ class PlayGame : AppCompatActivity() {
         strikeArray = Array<Int>(pitchTypes.size) {0}
         ballArray = Array<Int>(pitchTypes.size) {0}
         totalArray = Array<Int>(pitchTypes.size) {0}
-
     }
 
     private fun onStrikeButtonClicked() {
