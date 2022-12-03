@@ -47,7 +47,10 @@ class Game(var totalInnings: Int) {
     }
 
     fun nextHalfInning() {
-
+        if (homeHitting) {
+            inning++
+        }
+        homeHitting = !homeHitting
     }
 
     fun walk() {
@@ -65,11 +68,7 @@ class Game(var totalInnings: Int) {
     }
 
     fun strikeOut() {
-        
-    }
-
-    fun outAt(base: Int) {
-
+        out(0)
     }
 
     fun ball() {
