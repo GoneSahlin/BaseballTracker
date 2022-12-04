@@ -204,7 +204,10 @@ class PlayGame : AppCompatActivity() {
     }
 
     private fun onLineupButtonClicked() {
-        TODO("Not yet implemented")
+        val intent = Intent(this,LineupActivity::class.java)
+        startActivity(intent)
+
+        updateScoreboard()
     }
 
 
