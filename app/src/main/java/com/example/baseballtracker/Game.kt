@@ -43,7 +43,7 @@ class Game(var totalInnings: Int) {
         nextBatter()
     }
 
-    fun out(base: Int) {
+    fun out() {
         outs++
 //        baseRunners.out(base)
         if (outs >= 3) {
@@ -82,7 +82,7 @@ class Game(var totalInnings: Int) {
     }
 
     fun strikeOut() {
-        out(0)
+        out()
         nextBatter()
     }
 
@@ -94,7 +94,7 @@ class Game(var totalInnings: Int) {
     }
 
     fun foul() {
-        if (strikes == 3) {
+        if (strikes == 2) {
             return
         } else {
             strike()

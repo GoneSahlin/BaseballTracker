@@ -15,7 +15,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 
 class PlayGame : AppCompatActivity() {
     private var game = Game(9)
-    private var pitchTypeIndex: Int = -1
     private lateinit var awayScoreTextView: TextView
     private lateinit var homeScoreTextView: TextView
     private lateinit var inningTextView: TextView
@@ -138,7 +137,7 @@ class PlayGame : AppCompatActivity() {
     val selectPitchResultLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            pitchTypeIndex = result.data!!.getIntExtra(PITCH_TYPE, -1)
+            val pitchTypeIndex = result.data!!.getIntExtra(PITCH_TYPE, -1)
 
             if (pitchTypeIndex != -1) {
                 if (strike) {
@@ -154,13 +153,36 @@ class PlayGame : AppCompatActivity() {
 //                allPitches++
             }
         } else {
-            pitchTypeIndex = -1
+//            pitchTypeIndex = -1
         }
         updateScoreboard()
     }
 
     private fun onInPlayButtonClicked() {
+        val intent = Intent(this, InPlayActivity::class.java)
+        inPlayResultLauncher.launch(intent)
+    }
 
+    val inPlayResultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val outcomeIndex = result.data!!.getIntExtra(IN_PLAY_OUTCOME, -1)
+            val outcomes = InPlayOutcome.values()
+
+            when (outcomes[outcomeIndex]) {
+                InPlayOutcome.FOUL -> {
+                    game.foul()
+                }
+                InPlayOutcome.OUT -> {
+                    game.out()
+                }
+                else -> {
+
+                }
+            }
+
+        }
+        updateScoreboard()
     }
 
     private fun onRunScoredButtonClicked() {
