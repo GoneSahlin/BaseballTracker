@@ -14,31 +14,38 @@ class Game(var totalInnings: Int) {
     var inning: Int = 1
     var playerUpHomeIndex: Int = 0
     var playerUpAwayIndex: Int = 0
+    var pitcherHomeIndex: Int = 0
+    var pitcherAwayIndex: Int = 0
     var runsHome: Int = 0
     var runsAway: Int = 0
-    var baseRunners: BaseRunners = BaseRunners()
+//    var baseRunners: BaseRunners = BaseRunners()
 
 
-    fun runsScored(runnersScored: Set<Int>) {
-        for (runner in runnersScored) {
-            if (homeHitting) {
-                runsHome++
-            } else {
-                runsAway++
-            }
+    fun runScored() {
+//        for (runner in runnersScored) {
+//            if (homeHitting) {
+//                runsHome++
+//            } else {
+//                runsAway++
+//            }
+//        }
+        if (homeHitting) {
+            runsHome++
+        } else {
+            runsAway++
         }
     }
 
     fun baseHit(bases: Int) {
-        val runnersScored = baseRunners.hit(bases)
+//        val runnersScored = baseRunners.hit(bases)
 
-        runsScored(runnersScored)
+//        runsScored(runnersScored)
         nextBatter()
     }
 
     fun out(base: Int) {
         outs++
-        baseRunners.out(base)
+//        baseRunners.out(base)
         if (outs >= 3) {
             nextHalfInning()
         } else {
@@ -51,12 +58,19 @@ class Game(var totalInnings: Int) {
             inning++
         }
         homeHitting = !homeHitting
+
+        if (inning > totalInnings) {
+            endGame()
+        }
+        outs = 0
+        strikes = 0
+        balls = 0
     }
 
     fun walk() {
-        val runnersScored = baseRunners.hit(1)
+//        val runnersScored = baseRunners.hit(1)
 
-        runsScored(runnersScored)
+//        runsScored(runnersScored)
         nextBatter()
     }
 
@@ -69,6 +83,7 @@ class Game(var totalInnings: Int) {
 
     fun strikeOut() {
         out(0)
+        nextBatter()
     }
 
     fun ball() {
@@ -89,23 +104,23 @@ class Game(var totalInnings: Int) {
     fun nextBatter() {
         strikes = 0
         balls = 0
-        if (homeHitting) {
-            playerUpHomeIndex = (playerUpHomeIndex + 1) % homePlayers.size
-            baseRunners.setBatter(homePlayers[playerUpHomeIndex])
-        } else {
-            playerUpAwayIndex = (playerUpAwayIndex + 1) % awayPlayers.size
-            baseRunners.setBatter(awayPlayers[playerUpAwayIndex])
-        }
+//        if (homeHitting) {
+//            playerUpHomeIndex = (playerUpHomeIndex + 1) % homePlayers.size
+////            baseRunners.setBatter(homePlayers[playerUpHomeIndex])
+//        } else {
+//            playerUpAwayIndex = (playerUpAwayIndex + 1) % awayPlayers.size
+////            baseRunners.setBatter(awayPlayers[playerUpAwayIndex])
+//        }
 
     }
 
-    fun getRunner(base: Int): Int? {
-        return baseRunners.getRunner(base)
-    }
+//    fun getRunner(base: Int): Int? {
+////        return baseRunners.getRunner(base)
+//    }
 
-    fun setBaseRunners() {
-
-    }
+//    fun setBaseRunners() {
+//
+//    }
 
     fun endGame() {
 

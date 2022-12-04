@@ -14,90 +14,114 @@ import androidx.activity.result.contract.ActivityResultContracts
 
 
 class PlayGame : AppCompatActivity() {
+    private var game = Game(9)
     private var pitchTypeIndex: Int = -1
+    private lateinit var awayScoreTextView: TextView
+    private lateinit var homeScoreTextView: TextView
+    private lateinit var inningTextView: TextView
+    private lateinit var outsTextView: TextView
+    private lateinit var countTextView: TextView
+    private lateinit var pitcherTextView: TextView
+    private lateinit var batterTextView: TextView
     private lateinit var strikeButton: Button
     private lateinit var ballButton: Button
     private lateinit var inPlayButton: Button
-    private lateinit var strikeArray: Array<Int>
-    private lateinit var ballArray: Array<Int>
-    private lateinit var totalArray: Array<Int>
-    private lateinit var pitchTypes: Array<String>
-    private lateinit var pitchTextViewArray: Array<TextView>
-    private lateinit var strikeTextViewArray: Array<TextView>
-    private lateinit var ballTextViewArray: Array<TextView>
-    private lateinit var totalTextViewArray: Array<TextView>
-    private lateinit var allStrikesTextView: TextView
-    private lateinit var allBallsTextView: TextView
-    private lateinit var allTotalTextView: TextView
-    private lateinit var awayScoreTextView: TextView
-    private lateinit var homeScoreTextView: TextView
+    private lateinit var runScoredButton: Button
+    private lateinit var statsButton: Button
+    private lateinit var lineupButton: Button
     private var strike = true
-    private var allStrikes: Int = 0
-    private var allBalls: Int = 0
-    private var allPitches: Int = 0
-    private var runsAway: Int = 0
-    private var runsHome: Int = 0
+//    private lateinit var strikeArray: Array<Int>
+//    private lateinit var ballArray: Array<Int>
+//    private lateinit var totalArray: Array<Int>
+//    private lateinit var pitchTypes: Array<String>
+//    private lateinit var pitchTextViewArray: Array<TextView>
+//    private lateinit var strikeTextViewArray: Array<TextView>
+//    private lateinit var ballTextViewArray: Array<TextView>
+//    private lateinit var totalTextViewArray: Array<TextView>
+//    private lateinit var allStrikesTextView: TextView
+//    private lateinit var allBallsTextView: TextView
+//    private lateinit var allTotalTextView: TextView
+//    private var allStrikes: Int = 0
+//    private var allBalls: Int = 0
+//    private var allPitches: Int = 0
+//    private var runsAway: Int = 0
+//    private var runsHome: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_playgame)
 
+        // find views
+        awayScoreTextView = findViewById(R.id.away_score)
+        homeScoreTextView = findViewById(R.id.home_score)
+        inningTextView = findViewById(R.id.inning)
+        outsTextView = findViewById(R.id.outs)
+        countTextView = findViewById(R.id.count)
+        pitcherTextView = findViewById(R.id.pitcher)
+        batterTextView = findViewById(R.id.batter)
+
         strikeButton = findViewById(R.id.strike_button)
         ballButton = findViewById(R.id.ball_button)
         inPlayButton = findViewById(R.id.in_play_button)
+        runScoredButton = findViewById(R.id.run_button)
+        statsButton = findViewById(R.id.stats_button)
+        lineupButton = findViewById(R.id.lineup_button)
 
         strikeButton.setOnClickListener { onStrikeButtonClicked() }
         ballButton.setOnClickListener { onBallButtonClicked() }
         inPlayButton.setOnClickListener { onInPlayButtonClicked() }
+        runScoredButton.setOnClickListener { onRunScoredButtonClicked() }
+        statsButton.setOnClickListener { onStatsButtonClicked() }
+        lineupButton.setOnClickListener { onLineupButtonClicked() }
 
-        // initialize arrays
-        pitchTypes = resources.getStringArray(R.array.pitch_types)
-        strikeArray = Array<Int>(pitchTypes.size) {0}
-        ballArray = Array<Int>(pitchTypes.size) {0}
-        totalArray = Array<Int>(pitchTypes.size) {0}
 
-        // add stat textViews
-        val layout = findViewById<GridLayout>(R.id.stats_layout)
-        allStrikesTextView = findViewById(R.id.all_strikes)
-        allBallsTextView = findViewById(R.id.all_balls)
-        allTotalTextView = findViewById(R.id.all_total)
-        pitchTextViewArray = Array<TextView>(pitchTypes.size) { TextView(this) }
-        strikeTextViewArray = Array<TextView>(pitchTypes.size) { TextView(this) }
-        ballTextViewArray = Array<TextView>(pitchTypes.size) { TextView(this) }
-        totalTextViewArray = Array<TextView>(pitchTypes.size) { TextView(this) }
-        for (i in pitchTypes.indices) {
-            createTextView(pitchTextViewArray[i])
-            createTextView(strikeTextViewArray[i])
-            createTextView(ballTextViewArray[i])
-            createTextView(totalTextViewArray[i])
-            layout.addView(pitchTextViewArray[i])
-            layout.addView(strikeTextViewArray[i])
-            layout.addView(ballTextViewArray[i])
-            layout.addView(totalTextViewArray[i])
-        }
+//        // initialize arrays
+//        pitchTypes = resources.getStringArray(R.array.pitch_types)
+//        strikeArray = Array<Int>(pitchTypes.size) {0}
+//        ballArray = Array<Int>(pitchTypes.size) {0}
+//        totalArray = Array<Int>(pitchTypes.size) {0}
 
-        val runForAwayButton = findViewById<Button>(R.id.run_for_away_button)
-        val runForHomeButton = findViewById<Button>(R.id.run_for_home_button)
-        runForAwayButton.setOnClickListener { runForAwayClicked() }
-        runForHomeButton.setOnClickListener { runForHomeClicked() }
+//        // add stat textViews
+//        val layout = findViewById<GridLayout>(R.id.stats_layout)
+//        allStrikesTextView = findViewById(R.id.all_strikes)
+//        allBallsTextView = findViewById(R.id.all_balls)
+//        allTotalTextView = findViewById(R.id.all_total)
+//        pitchTextViewArray = Array<TextView>(pitchTypes.size) { TextView(this) }
+//        strikeTextViewArray = Array<TextView>(pitchTypes.size) { TextView(this) }
+//        ballTextViewArray = Array<TextView>(pitchTypes.size) { TextView(this) }
+//        totalTextViewArray = Array<TextView>(pitchTypes.size) { TextView(this) }
+//        for (i in pitchTypes.indices) {
+//            createTextView(pitchTextViewArray[i])
+//            createTextView(strikeTextViewArray[i])
+//            createTextView(ballTextViewArray[i])
+//            createTextView(totalTextViewArray[i])
+//            layout.addView(pitchTextViewArray[i])
+//            layout.addView(strikeTextViewArray[i])
+//            layout.addView(ballTextViewArray[i])
+//            layout.addView(totalTextViewArray[i])
+//        }
 
-        awayScoreTextView = findViewById(R.id.away_score)
-        homeScoreTextView = findViewById(R.id.home_score)
+//        val runForAwayButton = findViewById<Button>(R.id.run_for_away_button)
+//        val runForHomeButton = findViewById<Button>(R.id.run_for_home_button)
+//        runForAwayButton.setOnClickListener { runForAwayClicked() }
+//        runForHomeButton.setOnClickListener { runForHomeClicked() }
 
-        displayStats()
-        displayScore()
+
+
+//        displayStats()
+        updateScoreboard()
     }
 
-    private fun createTextView(textView: TextView) {
-        val params = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-        params.gravity = Gravity.CLIP_HORIZONTAL
-        textView.gravity = Gravity.RIGHT
-        textView.layoutParams = params
-    }
+//    private fun createTextView(textView: TextView) {
+//        val params = LinearLayout.LayoutParams(
+//            LinearLayout.LayoutParams.MATCH_PARENT,
+//            LinearLayout.LayoutParams.WRAP_CONTENT
+//        )
+//        params.gravity = Gravity.CLIP_HORIZONTAL
+//        textView.gravity = Gravity.RIGHT
+//        textView.layoutParams = params
+//    }
 
     private fun onStrikeButtonClicked() {
         strike = true;
@@ -118,54 +142,80 @@ class PlayGame : AppCompatActivity() {
 
             if (pitchTypeIndex != -1) {
                 if (strike) {
-                    strikeArray[pitchTypeIndex]++
-                    allStrikes++
+                    game.strike()
+//                    strikeArray[pitchTypeIndex]++
+//                    allStrikes++
                 } else {
-                    ballArray[pitchTypeIndex]++
-                    allBalls++
+                    game.ball()
+//                    ballArray[pitchTypeIndex]++
+//                    allBalls++
                 }
-                totalArray[pitchTypeIndex]++
-                allPitches++
+//                totalArray[pitchTypeIndex]++
+//                allPitches++
             }
         } else {
             pitchTypeIndex = -1
         }
-        displayStats()
-    }
-
-    private fun displayStats() {
-
-        allStrikesTextView.text = allStrikes.toString()
-        allBallsTextView.text = allBalls.toString()
-        allTotalTextView.text = allPitches.toString()
-
-
-        for (i in pitchTypes.indices) {
-            pitchTextViewArray[i].text = pitchTypes[i]
-            strikeTextViewArray[i].text = strikeArray[i].toString()
-            ballTextViewArray[i].text = ballArray[i].toString()
-            totalTextViewArray[i].text = totalArray[i].toString()
-
-//            strikeTextViewArray
-        }
-    }
-
-    private fun displayScore() {
-        awayScoreTextView.text = getString(R.string.away_score, runsAway)
-        homeScoreTextView.text = getString(R.string.home_score, runsHome)
-    }
-
-    private fun runForAwayClicked() {
-        runsAway++
-        displayScore()
-    }
-
-    private fun runForHomeClicked() {
-        runsHome++
-        displayScore()
+        updateScoreboard()
     }
 
     private fun onInPlayButtonClicked() {
 
     }
+
+    private fun onRunScoredButtonClicked() {
+        game.runScored()
+
+        updateScoreboard()
+    }
+
+    private fun onStatsButtonClicked() {
+        TODO("Not yet implemented")
+    }
+
+    private fun onLineupButtonClicked() {
+        TODO("Not yet implemented")
+    }
+
+
+//    private fun displayStats() {
+//
+//        allStrikesTextView.text = allStrikes.toString()
+//        allBallsTextView.text = allBalls.toString()
+//        allTotalTextView.text = allPitches.toString()
+//
+//
+//        for (i in pitchTypes.indices) {
+//            pitchTextViewArray[i].text = pitchTypes[i]
+//            strikeTextViewArray[i].text = strikeArray[i].toString()
+//            ballTextViewArray[i].text = ballArray[i].toString()
+//            totalTextViewArray[i].text = totalArray[i].toString()
+//
+////            strikeTextViewArray
+//        }
+//    }
+
+    private fun updateScoreboard() {
+        awayScoreTextView.text = getString(R.string.away_score, game.runsAway)
+        homeScoreTextView.text = getString(R.string.home_score, game.runsHome)
+        if (game.homeHitting) {
+            inningTextView.text = getString(R.string.inning_bottom, game.inning)
+        } else {
+            inningTextView.text = getString(R.string.inning_top, game.inning)
+        }
+        outsTextView.text = getString(R.string.outs, game.outs)
+        countTextView.text = getString(R.string.count, game.balls, game.strikes)
+    }
+
+//    private fun runForAwayClicked() {
+//        runsAway++
+//        displayScore()
+//    }
+//
+//    private fun runForHomeClicked() {
+//        runsHome++
+//        displayScore()
+//    }
+
+
 }
