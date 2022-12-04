@@ -13,17 +13,17 @@
         android:theme="@style/Theme.BaseballTracker"
         tools:targetApi="31">
         <activity
-            android:name=".InPlayActivity"
-            android:exported="false">
+            android:name=".LineupActivity"
+            android:exported="false"
+            android:label="@string/title_activity_lineup"
+            android:theme="@style/Theme.BaseballTracker.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".LineupActivity"
-            android:exported="false"
-            android:label="@string/title_activity_lineup"
-            android:theme="@style/Theme.BaseballTracker.NoActionBar">
+            android:name=".InPlayActivity"
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
