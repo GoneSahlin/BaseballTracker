@@ -176,11 +176,19 @@ class PlayGame : AppCompatActivity() {
                 InPlayOutcome.OUT -> {
                     game.out()
                 }
-                else -> {
-
+                InPlayOutcome.SINGLE -> {
+                    game.baseHit(1)
+                }
+                InPlayOutcome.DOUBLE -> {
+                    game.baseHit(2)
+                }
+                InPlayOutcome.TRIPLE -> {
+                    game.baseHit(3)
+                }
+                InPlayOutcome.HOME_RUN -> {
+                    game.baseHit(4)
                 }
             }
-
         }
         updateScoreboard()
     }
