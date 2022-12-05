@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 const val HOME_LINEUP = "com.example.baseballtracker.home_lineup"
 const val AWAY_LINEUP = "com.example.baseballtracker.away_lineup"
+const val HOME_PLAYER_NAMES = "com.example.baseballtracker.home_player_names"
+const val AWAY_PLAYER_NAMES = "com.example.baseballtracker.away_player_names"
 
 class LineupActivity : AppCompatActivity() {
 //    lateinit var homeLineup: Lineup
@@ -36,13 +38,14 @@ class LineupActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lineup)
 
         val homeLineup = intent.getSerializableExtra(HOME_LINEUP) as Lineup
         val awayLineup = intent.getSerializableExtra(AWAY_LINEUP) as Lineup
+        homePlayerNames = intent.getStringArrayExtra(HOME_PLAYER_NAMES)!!
+        awayPlayerNames = intent.getStringArrayExtra(AWAY_PLAYER_NAMES)!!
 
         homeAdapter = ItemAdapter(this, homeLineup)
         awayAdapter = ItemAdapter(this, awayLineup)
@@ -61,8 +64,6 @@ class LineupActivity : AppCompatActivity() {
 //        recyclerView.adapter = ItemAdapter(this, activeLineup)
         recyclerView.adapter = homeAdapter
 
-        homePlayerNames = arrayOf<String>("Zach", "Caleb", "Player 1", "Player 2")
-        awayPlayerNames = arrayOf<String>("Player 3", "Player 4")
 
         if (homeLineup.pitcher != "No Pitcher") {
             homePitcherSpinnerSelected = homePlayerNames.indexOf(homeLineup.pitcher)
@@ -70,7 +71,6 @@ class LineupActivity : AppCompatActivity() {
         if (awayLineup.pitcher != "No Pitcher") {
             awayPitcherSpinnerSelected = awayPlayerNames.indexOf(awayLineup.pitcher)
         }
-
 
         homePitcherSpinnerAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, homePlayerNames)
         homePitcherSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -232,11 +232,8 @@ class LineupActivity : AppCompatActivity() {
 
         fun onRemoveClicked(position: Int) {
             lineup.removePlayerByIndex(position)
-//            Log.d("Test", "1")
             this.notifyItemRemoved(position)
-//            Log.d("Test", "2")
             this.notifyItemRangeChanged(position, lineup.battingOrder.size)
-//            Log.d("Test", "3")
             this.notifyDataSetChanged()
         }
     }

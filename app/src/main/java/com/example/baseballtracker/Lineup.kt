@@ -9,6 +9,10 @@ class Lineup : java.io.Serializable {
     var pitcher: String = "No Pitcher"
 
     fun addPlayer(playerName: String) {
+        if (pitcher == "No Pitcher") {
+            pitcher = playerName
+        }
+
         val playerId = nextId
         nextId++
 
