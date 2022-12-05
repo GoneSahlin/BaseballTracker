@@ -3,6 +3,7 @@ package com.example.baseballtracker
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +14,11 @@ const val HOME_LINEUP = "com.example.baseballtracker.home_lineup"
 const val AWAY_LINEUP = "com.example.baseballtracker.away_lineup"
 
 class LineupActivity : AppCompatActivity() {
-    lateinit var homeLineup: Lineup
-    lateinit var awayLineup: Lineup
+//    lateinit var homeLineup: Lineup
+//    lateinit var awayLineup: Lineup
+    var homeActive = true
+    private lateinit var homeAdapter: ItemAdapter
+    private lateinit var awayAdapter: ItemAdapter
     lateinit var saveButton: Button
     lateinit var homeAwayRadioGroup: RadioGroup
     lateinit var enterPlayerEditText: EditText
@@ -26,8 +30,12 @@ class LineupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lineup)
 
-        homeLineup = intent.getSerializableExtra(HOME_LINEUP) as Lineup
-        awayLineup = intent.getSerializableExtra(AWAY_LINEUP) as Lineup
+        val homeLineup = intent.getSerializableExtra(HOME_LINEUP) as Lineup
+        val awayLineup = intent.getSerializableExtra(AWAY_LINEUP) as Lineup
+
+        homeAdapter = ItemAdapter(this, homeLineup)
+        awayAdapter = ItemAdapter(this, awayLineup)
+
 
         saveButton = findViewById(R.id.save_button)
         homeAwayRadioGroup = findViewById(R.id.home_away_radio_group)
@@ -39,13 +47,14 @@ class LineupActivity : AppCompatActivity() {
         addButton.setOnClickListener { onAddButtonClicked() }
 
         recyclerView = findViewById(R.id.lineup_recyler_view)
-        recyclerView.adapter = ItemAdapter(this, homeLineup)
+//        recyclerView.adapter = ItemAdapter(this, activeLineup)
+        recyclerView.adapter = homeAdapter
 
     }
 
-    private fun getActiveLineup() : Lineup {
-        return homeLineup
-    }
+//    private fun getActiveLineup() : Lineup {
+//        return homeLineup
+//    }
 
     private fun onAddButtonClicked() {
         // Ignore any leading or trailing spaces
@@ -56,23 +65,26 @@ class LineupActivity : AppCompatActivity() {
 
         // Add the item to the list
         if (playerName.isNotEmpty()) {
-            val lineup = getActiveLineup()
-            lineup.addPlayer(playerName)
+//            val lineup = getActiveLineup()
+//            lineup.addPlayer(playerName)
+//            activeLineup.addPlayer(playerName)
+            homeAdapter.lineup.addPlayer(playerName)
+            homeAdapter.notifyDataSetChanged()
         }
 
-        recyclerView.adapter!!.notifyDataSetChanged()
+//        recyclerView.adapter!!.notifyDataSetChanged()
     }
 
     private fun onSaveButtonClicked() {
-        intent.putExtra(HOME_LINEUP, homeLineup)
-        intent.putExtra(AWAY_LINEUP, awayLineup)
+        intent.putExtra(HOME_LINEUP, homeAdapter.lineup)
+        intent.putExtra(AWAY_LINEUP, awayAdapter.lineup)
         setResult(RESULT_OK, intent)
         finish()
     }
 
     private class ItemAdapter(
         private val context: Context,
-        private val lineup: Lineup
+        val lineup: Lineup
     ) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
         class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
             val textView: TextView = view.findViewById(R.id.player_name)
@@ -89,6 +101,7 @@ class LineupActivity : AppCompatActivity() {
         }
 
         override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+            Log.d("Test", position.toString())
             val playerName = lineup.getPlayerNameByIndex(position)
             holder.textView.text = playerName
 
@@ -102,7 +115,6 @@ class LineupActivity : AppCompatActivity() {
         }
 
         fun onMoveUpClicked(position: Int) {
-
             lineup.movePlayerUp(position)
             this.notifyDataSetChanged()
         }
@@ -114,11 +126,12 @@ class LineupActivity : AppCompatActivity() {
 
         fun onRemoveClicked(position: Int) {
             lineup.removePlayerByIndex(position)
+//            Log.d("Test", "1")
             this.notifyItemRemoved(position)
+//            Log.d("Test", "2")
             this.notifyItemRangeChanged(position, lineup.battingOrder.size)
+//            Log.d("Test", "3")
+            this.notifyDataSetChanged()
         }
-
-
     }
-
 }

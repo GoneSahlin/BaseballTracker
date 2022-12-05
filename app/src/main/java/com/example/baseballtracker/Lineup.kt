@@ -18,13 +18,14 @@ class Lineup : java.io.Serializable {
 
     fun removePlayerByIndex(battingOrderIndex: Int) {
         val playerId = battingOrder[battingOrderIndex]
-        battingOrder.remove(battingOrderIndex)
+        battingOrder.removeElementAt(battingOrderIndex)
         playerNames.remove(playerId)
     }
 
     fun removePlayerById(playerId: Int) {
         val battingOrderIndex = battingOrder.indexOf(playerId)
-        battingOrder.remove(battingOrderIndex)
+//        battingOrder.remove(battingOrderIndex)
+        battingOrder.removeElementAt(battingOrderIndex)
         playerNames.remove(playerId)
     }
 
@@ -47,7 +48,12 @@ class Lineup : java.io.Serializable {
     }
 
     fun getPlayerNameByIndex(playerIndex: Int): String {
-        val playerId = battingOrder[playerIndex]
-        return playerNames[playerId]!!
+        if (playerIndex in 0 until battingOrder.size) {
+            val playerId = battingOrder[playerIndex]
+            return playerNames[playerId]!!
+        } else {
+            return ""
+        }
+
     }
 }
