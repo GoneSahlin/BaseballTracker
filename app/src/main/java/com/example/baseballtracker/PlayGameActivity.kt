@@ -208,7 +208,8 @@ class PlayGameActivity : AppCompatActivity() {
     }
 
     private fun onStatsButtonClicked() {
-        TODO("Not yet implemented")
+        val intent = Intent(this, GameStatsActivity::class.java)
+        startActivity(intent)
     }
 
     private fun onLineupButtonClicked() {
