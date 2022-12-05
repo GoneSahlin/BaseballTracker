@@ -47,7 +47,6 @@ class LineupActivity : AppCompatActivity() {
         homeAdapter = ItemAdapter(this, homeLineup)
         awayAdapter = ItemAdapter(this, awayLineup)
 
-
         saveButton = findViewById(R.id.save_button)
         homeAwayRadioGroup = findViewById(R.id.home_away_radio_group)
 //        enterPlayerEditText = findViewById(R.id.enter_player)
@@ -65,6 +64,14 @@ class LineupActivity : AppCompatActivity() {
         homePlayerNames = arrayOf<String>("Zach", "Caleb", "Player 1", "Player 2")
         awayPlayerNames = arrayOf<String>("Player 3", "Player 4")
 
+        if (homeLineup.pitcher != "No Pitcher") {
+            homePitcherSpinnerSelected = homePlayerNames.indexOf(homeLineup.pitcher)
+        }
+        if (awayLineup.pitcher != "No Pitcher") {
+            awayPitcherSpinnerSelected = awayPlayerNames.indexOf(awayLineup.pitcher)
+        }
+
+
         homePitcherSpinnerAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, homePlayerNames)
         homePitcherSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         awayPitcherSpinnerAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, awayPlayerNames)
@@ -72,6 +79,8 @@ class LineupActivity : AppCompatActivity() {
 
         pitcherSpinner.adapter = homePitcherSpinnerAdapter
         enterPlayerSpinner.adapter = homePitcherSpinnerAdapter
+
+        pitcherSpinner.setSelection(homePitcherSpinnerSelected)
 
 
 //

@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.widget.Button
 import android.widget.GridLayout
@@ -248,6 +249,8 @@ class PlayGame : AppCompatActivity() {
         }
         outsTextView.text = getString(R.string.outs, game.outs)
         countTextView.text = getString(R.string.count, game.balls, game.strikes)
+        batterTextView.text = getString(R.string.batter, game.getBatterName())
+        pitcherTextView.text = getString(R.string.pitcher, game.getPitcherName())
     }
 
 //    private fun runForAwayClicked() {
