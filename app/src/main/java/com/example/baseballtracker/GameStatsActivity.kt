@@ -30,19 +30,15 @@ class GameStatsActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().add(R.id.game_stats_fragment_container_view, homeBattingFragment).commit()
         supportFragmentManager.beginTransaction().add(R.id.game_stats_fragment_container_view, awayBattingFragment).detach(awayBattingFragment).commit()
 
-
         // home away radio group
         homeAwayRadioGroup.setOnCheckedChangeListener { radioGroup, i ->
             if (i == R.id.home_radio_button) {
                 homeActive = true
-//                supportFragmentManager.beginTransaction().hide(awayBattingFragment).show(homeBattingFragment)
                 supportFragmentManager.beginTransaction().detach(awayBattingFragment).attach(homeBattingFragment).commit()
             } else {
                 homeActive = false
                 supportFragmentManager.beginTransaction().detach(homeBattingFragment).attach(awayBattingFragment).commit()
-//                supportFragmentManager.beginTransaction().hide(homeBattingFragment).show(awayBattingFragment)
             }
         }
-
     }
 }

@@ -23,7 +23,7 @@ class PlayerGameStats : java.io.Serializable {
 
     fun getObp(): String {
         var obp: Double = 0.0
-        if (atBats > 0) {
+        if (atBats + walks > 0) {
             obp = (hits + walks) / (atBats + walks).toDouble()
         }
         return String.format("%.3f", obp)
