@@ -19,13 +19,16 @@ class LineupActivity : AppCompatActivity() {
     var homeActive = true
     var homePitcherSpinnerSelected: Int = 0
     var awayPitcherSpinnerSelected: Int = 0
+    var homeEnterPlayerSpinnerSelected: Int = 0
+    var awayEnterPlayerSpinnerSelected: Int = 0
     lateinit var homePlayerNames: Array<String>
     lateinit var awayPlayerNames: Array<String>
     private lateinit var homeAdapter: ItemAdapter
     private lateinit var awayAdapter: ItemAdapter
     lateinit var saveButton: Button
     lateinit var homeAwayRadioGroup: RadioGroup
-    lateinit var enterPlayerEditText: EditText
+//    lateinit var enterPlayerEditText: EditText
+    lateinit var enterPlayerSpinner: Spinner
     lateinit var addButton: Button
     lateinit var pitcherSpinner: Spinner
     lateinit var homePitcherSpinnerAdapter: ArrayAdapter<String>
@@ -47,7 +50,8 @@ class LineupActivity : AppCompatActivity() {
 
         saveButton = findViewById(R.id.save_button)
         homeAwayRadioGroup = findViewById(R.id.home_away_radio_group)
-        enterPlayerEditText = findViewById(R.id.enter_player)
+//        enterPlayerEditText = findViewById(R.id.enter_player)
+        enterPlayerSpinner = findViewById(R.id.enter_player_spinner)
         addButton = findViewById(R.id.add_button)
         pitcherSpinner = findViewById(R.id.pitcher_spinner)
 
@@ -67,6 +71,7 @@ class LineupActivity : AppCompatActivity() {
         awayPitcherSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         pitcherSpinner.adapter = homePitcherSpinnerAdapter
+        enterPlayerSpinner.adapter = homePitcherSpinnerAdapter
 
 
 //
@@ -96,6 +101,23 @@ class LineupActivity : AppCompatActivity() {
             }
         }
 
+        enterPlayerSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+                if (homeActive) {
+                    homeEnterPlayerSpinnerSelected = position
+                }
+                else {
+                    awayEnterPlayerSpinnerSelected = position
+                }
+
+//                getActiveAdapter().lineup.pitcher = getActivePlayerNames()[position]
+            }
+        }
+
         // home away radio group
         homeAwayRadioGroup.setOnCheckedChangeListener { radioGroup, i ->
             if (i == R.id.home_radio_button) {
@@ -103,11 +125,15 @@ class LineupActivity : AppCompatActivity() {
                 recyclerView.adapter = homeAdapter
                 pitcherSpinner.adapter = homePitcherSpinnerAdapter
                 pitcherSpinner.setSelection(homePitcherSpinnerSelected)
+                enterPlayerSpinner.adapter = homePitcherSpinnerAdapter
+                enterPlayerSpinner.setSelection(homeEnterPlayerSpinnerSelected)
             } else {
                 homeActive = false
                 recyclerView.adapter = awayAdapter
                 pitcherSpinner.adapter = awayPitcherSpinnerAdapter
                 pitcherSpinner.setSelection(awayPitcherSpinnerSelected)
+                enterPlayerSpinner.adapter = awayPitcherSpinnerAdapter
+                enterPlayerSpinner.setSelection(awayEnterPlayerSpinnerSelected)
             }
         }
     }
@@ -128,10 +154,11 @@ class LineupActivity : AppCompatActivity() {
 
     private fun onAddButtonClicked() {
         // Ignore any leading or trailing spaces
-        val playerName = enterPlayerEditText.text.toString().trim()
+//        val playerName = enterPlayerEditText.text.toString().trim()
+        val playerName = enterPlayerSpinner.selectedItem.toString()
 
         // Clear the EditText so it's ready for another item
-        enterPlayerEditText.setText("")
+//        enterPlayerEditText.setText("")
 
         // Add the item to the list
         if (playerName.isNotEmpty()) {
