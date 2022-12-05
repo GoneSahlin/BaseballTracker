@@ -14,19 +14,21 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import kotlin.math.acos
-import kotlin.math.cos
-import kotlin.math.sin
+import kotlin.math.*
+
+
 
 class Distancetracker : AppCompatActivity(),LocationListener {
     private lateinit var locationManager: LocationManager
     private val locationPermissionCode = 2
     private lateinit var tvGpsLocation: TextView
     private  var home : Location? = null
+    private var dist :Double? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_distancetracker)
         findViewById<Button>(R.id.sethome).setOnClickListener { sethome() }
+        findViewById<Button>(R.id.grabball).setOnClickListener{getBall()}
 
     }
 
@@ -47,7 +49,9 @@ class Distancetracker : AppCompatActivity(),LocationListener {
             tvGpsLocation.text = "Home Plate Set"
         }
         else {
-            var dist = acos(sin(home!!.latitude)*sin(location.latitude)+ cos(home!!.latitude)* cos(location.latitude)*cos(location.longitude - home!!.longitude)) * 6371
+            dist = acos(sin(toradans(home!!.latitude))*sin(toradans(location.latitude))+ cos(toradans(home!!.latitude))* cos(toradans(location.latitude))*cos(toradans(location.longitude - home!!.longitude))) * 3960
+            dist = dist!! * 5280
+            dist =  ceil(dist!! * 100)/100
             tvGpsLocation.text = "Distance:  $dist"
 //                "Latitude: " + location.latitude + " , Longitude: " + location.longitude
         }
@@ -67,7 +71,14 @@ class Distancetracker : AppCompatActivity(),LocationListener {
 
 
     private fun sethome() {
+      home = null
         getLocation()
+    }
+    private fun getBall(){
 
     }
+    private fun toradans(degrees :Double):Double{
+        return degrees * PI/180
+    }
+
 }

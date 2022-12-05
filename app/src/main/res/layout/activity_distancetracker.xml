@@ -32,7 +32,7 @@
             android:gravity="center"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/sethome"
-            android:text="@string/pick_up_some_balls"
+            android:text="@string/set_home_plate"
             style="@style/StartText"
             android:textSize="50dp"
 
@@ -43,7 +43,7 @@
             android:id="@+id/grabball"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/set_home_plate"
+            android:text="@string/ball_grabbed"
             />
 
 
