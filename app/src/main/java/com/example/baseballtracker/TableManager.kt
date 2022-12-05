@@ -5,6 +5,9 @@ import android.annotation.SuppressLint
 import android.content.Context
 import java.io.File
 import java.io.InputStream
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.Paths
 import java.util.Vector
 
 
@@ -59,6 +62,7 @@ class TableManager (){
     fun add(row:Vector<String>){
         table.add(row)
     }
+
 
     @SuppressLint("SuspiciousIndentation")
     fun SaveFile(){

@@ -22,6 +22,7 @@ class TeamActivity : AppCompatActivity() {
         findViewById<Button>(R.id.player_to_add).isVisible = false
 
 
+
     }
 
     private fun addplayer() {
@@ -41,18 +42,25 @@ class TeamActivity : AppCompatActivity() {
 
     @SuppressLint("WrongViewCast")
     private fun makeTeam() {
-        val teamname = findViewById<EditText>(R.id.team_name).text.toString()
 
+        var teamname = findViewById<EditText>(R.id.team_name).text.toString()
+        teamname =  teamname
         team = TableManager(this, teamname)
         findViewById<Button>(R.id.add_player).isVisible = true
         findViewById<Button>(R.id.remove_player).isVisible = true
         findViewById<Button>(R.id.player_to_add).isVisible = true
 
+        var listOfTeams = TableManager(this, "teamlist")
+        var temp = Vector<String>()
+        temp.add(teamname)
+        listOfTeams.table.add(temp)
+        listOfTeams.SaveFile()
 
 
 
 
-       updatespinner()
+
+        updatespinner()
 
         //pitcherSpinner  = homePitcherSpinnerAdapter
 

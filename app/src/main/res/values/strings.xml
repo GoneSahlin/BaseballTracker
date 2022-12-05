@@ -60,4 +60,6 @@
     <string name="batting_distance">Batting distance</string>
     <string name="settings">settings</string>
     <string name="ball_grabbed">Ball grabbed</string>
+    <string name="start">Start</string>
+    <string name="_7">7</string>
 </resources>

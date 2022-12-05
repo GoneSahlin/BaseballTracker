@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,20 +16,24 @@
         android:theme="@style/Theme.BaseballTracker"
         tools:targetApi="31">
         <activity
-            android:parentActivityName=".MainSettingsActivity"
-            android:name=".TeamActivity"
-            android:exported="false" >
+            android:name=".StartActivitey"
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
-            android:parentActivityName=".PracticeMainActivity"
+            android:name=".TeamActivity"
+            android:exported="false"
+            android:parentActivityName=".MainSettingsActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".DistanceTrackerActivity"
             android:exported="false"
-
-            >
+            android:parentActivityName=".PracticeMainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -57,9 +62,9 @@
                 android:value="" />
         </activity>
         <activity
-            android:parentActivityName=".MainActivity"
             android:name=".MainSettingsActivity"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:parentActivityName=".MainActivity"
