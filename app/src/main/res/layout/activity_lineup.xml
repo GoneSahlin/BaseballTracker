@@ -29,7 +29,7 @@
             android:id="@+id/home_radio_button"
             android:layout_marginRight="20dp"
             android:textSize="30dp"
-            />
+            android:checked="true" />
 
         <RadioButton
             android:layout_width="wrap_content"
@@ -41,18 +41,29 @@
 
     </RadioGroup>
 
-    <EditText
-        android:id="@+id/enter_player"
+<!--    <EditText-->
+<!--        android:id="@+id/enter_player"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:inputType="text"-->
+<!--        android:maxLines="1"-->
+<!--        android:textSize="30sp"-->
+<!--        android:hint="@string/enter_player_name"-->
+<!--        android:autofillHints=""-->
+<!--        app:layout_constraintRight_toLeftOf="@+id/add_button"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/home_away_radio_group" />-->
+
+    <Spinner
+        android:id="@+id/enter_player_spinner"
+        android:layout_height="0dp"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:maxLines="1"
-        android:textSize="30sp"
-        android:hint="@string/enter_player_name"
-        android:autofillHints=""
-        app:layout_constraintRight_toLeftOf="@+id/add_button"
+        app:layout_constraintTop_toTopOf="@id/add_button"
+        app:layout_constraintBottom_toBottomOf="@id/add_button"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/home_away_radio_group" />
+        app:layout_constraintRight_toLeftOf="@id/add_button">
+
+    </Spinner>
 
     <Button
         android:id="@+id/add_button"
@@ -61,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/enter_player" />
+        app:layout_constraintTop_toBottomOf="@id/home_away_radio_group" />
 
     <TextView
         android:id="@+id/pitcher_label"
@@ -69,7 +80,7 @@
         android:layout_height="wrap_content"
         android:labelFor="@id/pitcher_spinner"
         android:text="@string/pitcher_label"
-        app:layout_constraintTop_toBottomOf="@id/enter_player"
+        app:layout_constraintTop_toBottomOf="@id/enter_player_spinner"
         app:layout_constraintLeft_toLeftOf="parent"
         android:textSize="30dp"
         />

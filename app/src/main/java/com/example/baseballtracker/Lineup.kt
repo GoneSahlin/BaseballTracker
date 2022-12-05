@@ -6,7 +6,7 @@ class Lineup : java.io.Serializable {
     var nextId = 0
     var battingOrder: Vector<Int> = Vector()
     var playerNames: MutableMap<Int, String> = mutableMapOf()
-    var pitcher: Int = -1
+    var pitcher: String = "No Pitcher"
 
     fun addPlayer(playerName: String) {
         val playerId = nextId
@@ -18,13 +18,14 @@ class Lineup : java.io.Serializable {
 
     fun removePlayerByIndex(battingOrderIndex: Int) {
         val playerId = battingOrder[battingOrderIndex]
-        battingOrder.remove(battingOrderIndex)
+        battingOrder.removeElementAt(battingOrderIndex)
         playerNames.remove(playerId)
     }
 
     fun removePlayerById(playerId: Int) {
         val battingOrderIndex = battingOrder.indexOf(playerId)
-        battingOrder.remove(battingOrderIndex)
+//        battingOrder.remove(battingOrderIndex)
+        battingOrder.removeElementAt(battingOrderIndex)
         playerNames.remove(playerId)
     }
 
@@ -47,7 +48,12 @@ class Lineup : java.io.Serializable {
     }
 
     fun getPlayerNameByIndex(playerIndex: Int): String {
-        val playerId = battingOrder[playerIndex]
-        return playerNames[playerId]!!
+        if (playerIndex in 0 until battingOrder.size) {
+            val playerId = battingOrder[playerIndex]
+            return playerNames[playerId]!!
+        } else {
+            return ""
+        }
+
     }
 }

@@ -48,9 +48,8 @@ class Game(var totalInnings: Int) {
 //        baseRunners.out(base)
         if (outs >= 3) {
             nextHalfInning()
-        } else {
-            nextBatter()
         }
+        nextBatter()
     }
 
     fun nextHalfInning() {
@@ -83,7 +82,6 @@ class Game(var totalInnings: Int) {
 
     fun strikeOut() {
         out()
-        nextBatter()
     }
 
     fun ball() {
@@ -104,13 +102,14 @@ class Game(var totalInnings: Int) {
     fun nextBatter() {
         strikes = 0
         balls = 0
-//        if (homeHitting) {
-//            playerUpHomeIndex = (playerUpHomeIndex + 1) % homePlayers.size
-////            baseRunners.setBatter(homePlayers[playerUpHomeIndex])
-//        } else {
-//            playerUpAwayIndex = (playerUpAwayIndex + 1) % awayPlayers.size
-////            baseRunners.setBatter(awayPlayers[playerUpAwayIndex])
-//        }
+
+        if (homeHitting) {
+            playerUpHomeIndex = (playerUpHomeIndex + 1) % homeLineup.battingOrder.size
+//            baseRunners.setBatter(homePlayers[playerUpHomeIndex])
+        } else {
+            playerUpAwayIndex = (playerUpAwayIndex + 1) % awayLineup.battingOrder.size
+//            baseRunners.setBatter(awayPlayers[playerUpAwayIndex])
+        }
 
     }
 
@@ -121,6 +120,20 @@ class Game(var totalInnings: Int) {
 //    fun setBaseRunners() {
 //
 //    }
+
+    fun getBatterName() : String {
+        if (homeHitting) {
+            return homeLineup.getPlayerNameByIndex(playerUpHomeIndex)
+        }
+        return awayLineup.getPlayerNameByIndex(playerUpAwayIndex)
+    }
+
+    fun getPitcherName() : String {
+        if (homeHitting) {
+            return awayLineup.pitcher
+        }
+        return homeLineup.pitcher
+    }
 
     fun endGame() {
 
