@@ -30,9 +30,6 @@ class StartActivitey : AppCompatActivity() {
 
     fun updatespinner(spin : Spinner){
 
-
-
-
             var temp = Vector<String>()
             var team = TableManager(this, "teamlist")
             team.table.forEach{

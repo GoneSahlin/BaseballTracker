@@ -10,6 +10,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 
 
 class PlayGameActivity : AppCompatActivity() {
+
     private var game = Game(9)
     private lateinit var awayScoreTextView: TextView
     private lateinit var homeScoreTextView: TextView
@@ -46,6 +47,8 @@ class PlayGameActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_playgame)
 
