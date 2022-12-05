@@ -56,12 +56,14 @@ class Game(var totalInnings: Int) {
     }
 
     fun out() {
+        nextBatter()
+
         outs++
 //        baseRunners.out(base)
         if (outs >= 3) {
             nextHalfInning()
         }
-        nextBatter()
+
     }
 
     fun nextHalfInning() {
@@ -80,6 +82,7 @@ class Game(var totalInnings: Int) {
 
     fun walk() {
         getBatterStats().walks++
+        getBatterStats().atBats--
 //        val runnersScored = baseRunners.hit(1)
 
 //        runsScored(runnersScored)
