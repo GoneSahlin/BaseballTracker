@@ -59,6 +59,8 @@ class LineupActivity : AppCompatActivity() {
             val lineup = getActiveLineup()
             lineup.addPlayer(playerName)
         }
+
+        recyclerView.adapter!!.notifyDataSetChanged()
     }
 
     private fun onSaveButtonClicked() {
@@ -100,6 +102,7 @@ class LineupActivity : AppCompatActivity() {
         }
 
         fun onMoveUpClicked(position: Int) {
+
             lineup.movePlayerUp(position)
             this.notifyDataSetChanged()
         }
@@ -111,7 +114,8 @@ class LineupActivity : AppCompatActivity() {
 
         fun onRemoveClicked(position: Int) {
             lineup.removePlayerByIndex(position)
-            this.notifyDataSetChanged()
+            this.notifyItemRemoved(position)
+            this.notifyItemRangeChanged(position, lineup.battingOrder.size)
         }
 
 
