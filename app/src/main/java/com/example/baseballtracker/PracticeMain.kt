@@ -11,17 +11,22 @@ class PracticeMain : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_practice_main)
 
-        val  pitching = findViewById<Button>(R.id.Pitching)
-        pitching.setOnClickListener{
-            val intent = Intent(this,Pitching::class.java)
+        val pitching = findViewById<Button>(R.id.Pitching)
+        pitching.setOnClickListener {
+            val intent = Intent(this, Pitching::class.java)
             startActivity(intent)
         }
 
-        val  bat = findViewById<Button>(R.id.Batting)
-        bat.setOnClickListener{
-            val intent = Intent(this,Batting::class.java)
+        val bat = findViewById<Button>(R.id.Batting)
+        bat.setOnClickListener {
+            val intent = Intent(this, Batting::class.java)
             startActivity(intent)
 
         }
+
+        val dist = findViewById<Button>(R.id.distancetracker)
+        dist.setOnClickListener { val intent = Intent(this, Distancetracker::class.java)
+            startActivity(intent)}
+
     }
 }

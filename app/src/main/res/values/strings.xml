@@ -51,4 +51,10 @@
     <string name="enter_player_name">Enter player name</string>
     <string name="pitcher_label">Pitcher:</string>
     <string name="player_name">Player Name</string>
+    <string name="pick_up_some_balls">Pick Up Some Balls</string>
+    <string name="set_home_plate">Set Home Plate</string>
+    <string name="batting">Batting</string>
+    <string name="pitching">Pitching</string>
+    <string name="batting_distance">Batting distance</string>
+    <string name="settings">settings</string>
 </resources>
