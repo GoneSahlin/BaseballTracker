@@ -3,17 +3,13 @@ package com.example.baseballtracker
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
-import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import java.util.Vector
 
-class Team_view : AppCompatActivity() {
-    private lateinit var team: tablemanager
+class TeamActivity : AppCompatActivity() {
+    private lateinit var team: TableManager
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +41,7 @@ class Team_view : AppCompatActivity() {
     private fun makeTeam() {
         val teamname = findViewById<EditText>(R.id.team_name).text.toString()
 
-        team = tablemanager(this,teamname)
+        team = TableManager(this,teamname)
         findViewById<Button>(R.id.add_player).isVisible = true
         findViewById<Button>(R.id.remove_player).isVisible = true
         findViewById<Button>(R.id.player_to_add).isVisible = true

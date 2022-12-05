@@ -13,22 +13,22 @@ class MainActivity : AppCompatActivity() {
 
        val  practice = findViewById<Button>(R.id.practice)
         practice.setOnClickListener{
-            val intent = Intent(this,PracticeMain::class.java)
+            val intent = Intent(this,PracticeMainActivity::class.java)
             startActivity(intent)
         }
         val  play = findViewById<Button>(R.id.playGame)
         play.setOnClickListener{
-            val intent = Intent(this,PlayGame::class.java)
+            val intent = Intent(this,PlayGameActivity::class.java)
             startActivity(intent)
         }
         val  stats = findViewById<Button>(R.id.stats)
         stats.setOnClickListener{
-            val intent = Intent(this,Stats::class.java)
+            val intent = Intent(this,StatsActivity::class.java)
             startActivity(intent)
         }
         val  settings = findViewById<Button>(R.id.settings)
         settings.setOnClickListener{
-            val intent = Intent(this,MainSettings::class.java)
+            val intent = Intent(this,MainSettingsActivity::class.java)
             startActivity(intent)
         }
 

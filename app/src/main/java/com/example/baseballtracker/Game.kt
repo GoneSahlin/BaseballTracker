@@ -14,8 +14,6 @@ class Game(var totalInnings: Int) {
     var inning: Int = 1
     var playerUpHomeIndex: Int = 0
     var playerUpAwayIndex: Int = 0
-    var pitcherHomeIndex: Int = 0
-    var pitcherAwayIndex: Int = 0
     var runsHome: Int = 0
     var runsAway: Int = 0
 //    var baseRunners: BaseRunners = BaseRunners()

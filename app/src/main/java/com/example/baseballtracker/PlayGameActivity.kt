@@ -1,20 +1,15 @@
 package com.example.baseballtracker
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.Gravity
 import android.widget.Button
-import android.widget.GridLayout
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 
 
-class PlayGame : AppCompatActivity() {
+class PlayGameActivity : AppCompatActivity() {
     private var game = Game(9)
     private lateinit var awayScoreTextView: TextView
     private lateinit var homeScoreTextView: TextView

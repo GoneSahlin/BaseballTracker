@@ -18,7 +18,7 @@ import kotlin.math.*
 
 
 
-class Distancetracker : AppCompatActivity(),LocationListener {
+class DistanceTrackerActivity : AppCompatActivity(),LocationListener {
     private lateinit var locationManager: LocationManager
     private val locationPermissionCode = 2
     private lateinit var tvGpsLocation: TextView

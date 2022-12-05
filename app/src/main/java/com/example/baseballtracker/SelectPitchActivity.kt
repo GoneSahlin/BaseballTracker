@@ -1,15 +1,12 @@
 package com.example.baseballtracker
 
 import android.content.Intent
-import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.LinearLayout.LayoutParams
-import androidx.core.graphics.red
 
 
 const val PITCH_TYPE = "com.example.baseballtracker.pitch_type"

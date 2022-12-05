@@ -9,7 +9,7 @@ import java.util.Vector
 
 
 
-class tablemanager (){
+class TableManager (){
     lateinit var context : Context
     var table = Vector<Vector<String>>()
     lateinit var Filename: String

@@ -2,14 +2,12 @@ package com.example.baseballtracker
 
 
 import android.content.Context
-import android.util.Log
-import java.io.File
 import java.util.Vector
 
 class Player() {
 
 fun get_id(context: Context):Int{
-    val temp = tablemanager(context,"CounterForNewPlayerIds")
+    val temp = TableManager(context,"CounterForNewPlayerIds")
     try {
 
 

@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
-class MainSettings : AppCompatActivity() {
+class MainSettingsActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,7 +16,7 @@ class MainSettings : AppCompatActivity() {
     }
 
     private fun callCreateTeam() {
-        val intent = Intent(this,Team_view::class.java)
+        val intent = Intent(this,TeamActivity::class.java)
         startActivity(intent)
     }
 }
