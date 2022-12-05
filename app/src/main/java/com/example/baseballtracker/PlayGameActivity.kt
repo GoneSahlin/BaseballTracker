@@ -24,6 +24,8 @@ class PlayGameActivity : AppCompatActivity() {
     private lateinit var runScoredButton: Button
     private lateinit var statsButton: Button
     private lateinit var lineupButton: Button
+    lateinit var homePlayerNames: Array<String>
+    lateinit var awayPlayerNames: Array<String>
     private var strike = true
 //    private lateinit var strikeArray: Array<Int>
 //    private lateinit var ballArray: Array<Int>
@@ -70,6 +72,16 @@ class PlayGameActivity : AppCompatActivity() {
         statsButton.setOnClickListener { onStatsButtonClicked() }
         lineupButton.setOnClickListener { onLineupButtonClicked() }
 
+        homePlayerNames = arrayOf<String>("Zach", "Caleb", "Player 1", "Player 2")
+        awayPlayerNames = arrayOf<String>("Player 3", "Player 4")
+
+        for (playerName in homePlayerNames) {
+            game.homeLineup.addPlayer(playerName)
+        }
+        for (playerName in awayPlayerNames) {
+            game.awayLineup.addPlayer(playerName)
+        }
+        
 
 //        // initialize arrays
 //        pitchTypes = resources.getStringArray(R.array.pitch_types)
@@ -203,6 +215,8 @@ class PlayGameActivity : AppCompatActivity() {
         val intent = Intent(this,LineupActivity::class.java)
         intent.putExtra(HOME_LINEUP, game.homeLineup)
         intent.putExtra(AWAY_LINEUP, game.awayLineup)
+        intent.putExtra(HOME_PLAYER_NAMES, homePlayerNames)
+        intent.putExtra(AWAY_PLAYER_NAMES, awayPlayerNames)
 
         lineupResultLauncher.launch(intent)
     }
