@@ -17,6 +17,10 @@ class LineupActivity : AppCompatActivity() {
 //    lateinit var homeLineup: Lineup
 //    lateinit var awayLineup: Lineup
     var homeActive = true
+    var homePitcherSpinnerSelected: Int = 0
+    var awayPitcherSpinnerSelected: Int = 0
+    lateinit var homePlayerNames: Array<String>
+    lateinit var awayPlayerNames: Array<String>
     private lateinit var homeAdapter: ItemAdapter
     private lateinit var awayAdapter: ItemAdapter
     lateinit var saveButton: Button
@@ -24,7 +28,11 @@ class LineupActivity : AppCompatActivity() {
     lateinit var enterPlayerEditText: EditText
     lateinit var addButton: Button
     lateinit var pitcherSpinner: Spinner
+    lateinit var homePitcherSpinnerAdapter: ArrayAdapter<String>
+    lateinit var awayPitcherSpinnerAdapter: ArrayAdapter<String>
     lateinit var recyclerView: RecyclerView
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,11 +58,73 @@ class LineupActivity : AppCompatActivity() {
 //        recyclerView.adapter = ItemAdapter(this, activeLineup)
         recyclerView.adapter = homeAdapter
 
+        homePlayerNames = arrayOf<String>("Zach", "Caleb", "Player 1", "Player 2")
+        awayPlayerNames = arrayOf<String>("Player 3", "Player 4")
+
+        homePitcherSpinnerAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, homePlayerNames)
+        homePitcherSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        awayPitcherSpinnerAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, awayPlayerNames)
+        awayPitcherSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        pitcherSpinner.adapter = homePitcherSpinnerAdapter
+
+
+//
+//        val pitcherSpinnerAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
+//            this,
+//            android.R.layout.simple_spinner_dropdown_item,
+//            homePlayerNames
+//        ).also { adapter ->
+//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//            pitcherSpinner.adapter = adapter
+//        }
+
+        pitcherSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+                if (homeActive) {
+                    homePitcherSpinnerSelected = position
+                }
+                else {
+                    awayPitcherSpinnerSelected = position
+                }
+
+                getActiveAdapter().lineup.pitcher = getActivePlayerNames()[position]
+            }
+        }
+
+        // home away radio group
+        homeAwayRadioGroup.setOnCheckedChangeListener { radioGroup, i ->
+            if (i == R.id.home_radio_button) {
+                homeActive = true
+                recyclerView.adapter = homeAdapter
+                pitcherSpinner.adapter = homePitcherSpinnerAdapter
+                pitcherSpinner.setSelection(homePitcherSpinnerSelected)
+            } else {
+                homeActive = false
+                recyclerView.adapter = awayAdapter
+                pitcherSpinner.adapter = awayPitcherSpinnerAdapter
+                pitcherSpinner.setSelection(awayPitcherSpinnerSelected)
+            }
+        }
     }
 
-//    private fun getActiveLineup() : Lineup {
-//        return homeLineup
-//    }
+    private fun getActiveAdapter() : ItemAdapter {
+        if (homeActive) {
+            return homeAdapter
+        }
+        return awayAdapter
+    }
+
+    private fun getActivePlayerNames() : Array<String> {
+        if (homeActive) {
+            return homePlayerNames
+        }
+        return awayPlayerNames
+    }
 
     private fun onAddButtonClicked() {
         // Ignore any leading or trailing spaces
@@ -68,8 +138,8 @@ class LineupActivity : AppCompatActivity() {
 //            val lineup = getActiveLineup()
 //            lineup.addPlayer(playerName)
 //            activeLineup.addPlayer(playerName)
-            homeAdapter.lineup.addPlayer(playerName)
-            homeAdapter.notifyDataSetChanged()
+            getActiveAdapter().lineup.addPlayer(playerName)
+            getActiveAdapter().notifyDataSetChanged()
         }
 
 //        recyclerView.adapter!!.notifyDataSetChanged()

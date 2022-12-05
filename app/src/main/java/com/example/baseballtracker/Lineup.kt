@@ -6,7 +6,7 @@ class Lineup : java.io.Serializable {
     var nextId = 0
     var battingOrder: Vector<Int> = Vector()
     var playerNames: MutableMap<Int, String> = mutableMapOf()
-    var pitcher: Int = -1
+    var pitcher: String = "No Pitcher"
 
     fun addPlayer(playerName: String) {
         val playerId = nextId
