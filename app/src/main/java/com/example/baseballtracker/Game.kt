@@ -16,6 +16,8 @@ class Game(var totalInnings: Int) {
     var playerUpAwayIndex: Int = 0
     var runsHome: Int = 0
     var runsAway: Int = 0
+    var homePlayerStats: MutableMap<String, PlayerGameStats> = mutableMapOf()
+    var awayPlayerStats: MutableMap<String, PlayerGameStats> = mutableMapOf()
 //    var baseRunners: BaseRunners = BaseRunners()
 
 
@@ -32,12 +34,24 @@ class Game(var totalInnings: Int) {
         } else {
             runsAway++
         }
+
+        // update stats
+        getBatterStats().rbis++
     }
 
     fun baseHit(bases: Int) {
 //        val runnersScored = baseRunners.hit(bases)
 
 //        runsScored(runnersScored)
+
+        when (bases) {
+            1 -> getBatterStats().singles++
+            2 -> getBatterStats().doubles++
+            3 -> getBatterStats().triples++
+            4 -> getBatterStats().homeRuns++
+        }
+        getBatterStats().hits++
+
         nextBatter()
     }
 
@@ -65,10 +79,13 @@ class Game(var totalInnings: Int) {
     }
 
     fun walk() {
+        getBatterStats().walks++
 //        val runnersScored = baseRunners.hit(1)
 
 //        runsScored(runnersScored)
         nextBatter()
+
+
     }
 
     fun strike() {
@@ -79,6 +96,8 @@ class Game(var totalInnings: Int) {
     }
 
     fun strikeOut() {
+        getBatterStats().strikeOuts++
+
         out()
     }
 
@@ -98,6 +117,8 @@ class Game(var totalInnings: Int) {
     }
 
     fun nextBatter() {
+        getBatterStats().atBats++
+
         strikes = 0
         balls = 0
 
@@ -108,7 +129,6 @@ class Game(var totalInnings: Int) {
             playerUpAwayIndex = (playerUpAwayIndex + 1) % awayLineup.battingOrder.size
 //            baseRunners.setBatter(awayPlayers[playerUpAwayIndex])
         }
-
     }
 
 //    fun getRunner(base: Int): Int? {
@@ -118,6 +138,20 @@ class Game(var totalInnings: Int) {
 //    fun setBaseRunners() {
 //
 //    }
+    fun getBatterStats() : PlayerGameStats {
+        val activePlayerStats = getActivePlayerStats()
+        if (!activePlayerStats.containsKey(getBatterName())) {
+            activePlayerStats[getBatterName()] = PlayerGameStats()
+        }
+        return activePlayerStats[getBatterName()]!!
+    }
+
+    fun getLastBatterName() : String {
+        if (homeHitting) {
+            return homeLineup.getPlayerNameByIndex(playerUpHomeIndex - 1)
+        }
+        return awayLineup.getPlayerNameByIndex(playerUpAwayIndex - 1)
+    }
 
     fun getBatterName() : String {
         if (homeHitting) {
@@ -135,5 +169,12 @@ class Game(var totalInnings: Int) {
 
     fun endGame() {
 
+    }
+
+    fun getActivePlayerStats() : MutableMap<String, PlayerGameStats> {
+        if (homeHitting) {
+            return homePlayerStats
+        }
+        return awayPlayerStats
     }
 }
