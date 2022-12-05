@@ -205,8 +205,18 @@ class PlayGame : AppCompatActivity() {
 
     private fun onLineupButtonClicked() {
         val intent = Intent(this,LineupActivity::class.java)
-        startActivity(intent)
+        intent.putExtra(HOME_LINEUP, game.homeLineup)
+        intent.putExtra(AWAY_LINEUP, game.awayLineup)
 
+        lineupResultLauncher.launch(intent)
+    }
+
+    val lineupResultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            game.homeLineup = result.data!!.getSerializableExtra(HOME_LINEUP) as Lineup
+            game.awayLineup = result.data!!.getSerializableExtra(AWAY_LINEUP) as Lineup
+        }
         updateScoreboard()
     }
 

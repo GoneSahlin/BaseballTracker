@@ -5,8 +5,8 @@ import java.util.*
 class Game(var totalInnings: Int) {
     var homeName: String = "Home"
     var awayName: String = "Away"
-    var homePlayers: Vector<Int> = Vector<Int>()
-    var awayPlayers: Vector<Int> = Vector<Int>()
+    var homeLineup = Lineup()
+    var awayLineup = Lineup()
     var outs: Int = 0
     var strikes: Int = 0
     var balls: Int = 0

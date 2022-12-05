@@ -2,7 +2,7 @@ package com.example.baseballtracker
 
 import java.util.*
 
-class Lineup {
+class Lineup : java.io.Serializable {
     var nextId = 0
     var battingOrder: Vector<Int> = Vector()
     var playerNames: MutableMap<Int, String> = mutableMapOf()
@@ -28,7 +28,26 @@ class Lineup {
         playerNames.remove(playerId)
     }
 
-    fun movePlayerUp(playerId: Int) {
-        
+    fun movePlayerUp(playerIndex: Int) {
+        if (playerIndex != 0) {
+            val playerId = battingOrder[playerIndex]
+            val playerBeforeId = battingOrder[playerIndex - 1]
+            battingOrder[playerIndex] = playerBeforeId
+            battingOrder[playerIndex - 1] = playerId
+        }
+    }
+
+    fun movePlayerDown(playerIndex: Int) {
+        if (playerIndex != battingOrder.size - 1) {
+            val playerId = battingOrder[playerIndex]
+            val playerAfterId = battingOrder[playerIndex + 1]
+            battingOrder[playerIndex] = playerAfterId
+            battingOrder[playerIndex + 1] = playerId
+        }
+    }
+
+    fun getPlayerNameByIndex(playerIndex: Int): String {
+        val playerId = battingOrder[playerIndex]
+        return playerNames[playerId]!!
     }
 }

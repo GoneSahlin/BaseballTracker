@@ -18,7 +18,6 @@ class SelectPitch : AppCompatActivity() {
     private lateinit var buttonArray: Array<Button>
     private lateinit var pitchTypes: Array<String>
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_pitch)
