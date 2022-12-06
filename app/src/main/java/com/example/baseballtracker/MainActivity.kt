@@ -21,11 +21,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this,StartActivitey::class.java)
             startActivity(intent)
         }
-        val  stats = findViewById<Button>(R.id.stats)
-        stats.setOnClickListener{
-            val intent = Intent(this,StatsActivity::class.java)
-            startActivity(intent)
-        }
+//        val  stats = findViewById<Button>(R.id.stats)
+//        stats.setOnClickListener{
+//            val intent = Intent(this,StatsActivity::class.java)
+//            startActivity(intent)
+//        }
         val  settings = findViewById<Button>(R.id.settings)
         settings.setOnClickListener{
             val intent = Intent(this,MainSettingsActivity::class.java)
