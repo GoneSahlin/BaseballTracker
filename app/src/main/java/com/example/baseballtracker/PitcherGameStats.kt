@@ -7,6 +7,7 @@ class PitcherGameStats(pitchTypes: Array<String>, var inningsPerGame: Int) : jav
     var outs = 0
     var earnedRuns = 0
     var hits = 0
+    var homeruns = 0
     var walks = 0
     var strikeouts = 0
     var pitchTypeStrikes = mutableMapOf<String,Int>()
@@ -34,10 +35,30 @@ class PitcherGameStats(pitchTypes: Array<String>, var inningsPerGame: Int) : jav
     fun getEra() : String {
         var era = 0.0
         if (outs != 0) {
-            return (earnedRuns * inningsPerGame * 3.0 / outs).toString()
+            return String.format("%.3f",(earnedRuns * inningsPerGame * 3.0 / outs).toString())
         }
         else {
-            return "0"
+            return "0.00"
         }
+    }
+
+    fun getIp():String{
+        return String.format("%.1f",(outs/3).toString())
+    }
+
+    fun getH():String{
+        return String.format("%.1f",hits.toString())
+    }
+    fun getEr():String{
+        return String.format("%.1f",earnedRuns.toString())
+    }
+    fun getHr():String{
+        return String.format("%.1f",homeruns.toString())
+    }
+    fun getBb():String{
+        return String.format("%.1f",walks.toString())
+    }
+    fun getSo():String{
+        return String.format("%.1f",strikeouts.toString())
     }
 }
