@@ -76,7 +76,6 @@ class PitchingGameStatsFragment : Fragment() {
             val bb: TextView = view.findViewById(R.id.bb)
             val so: TextView = view.findViewById(R.id.so)
             val moreButton: Button = view.findViewById(R.id.show_more_button)
-
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -89,9 +88,14 @@ class PitchingGameStatsFragment : Fragment() {
         override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
             val playerNameString = pitcherGameStats.keys.toList()[position]
             holder.playerName.text = playerNameString
-
+            holder.era.text = pitcherGameStats[playerNameString].getEra()
+            holder.ip.text = pitcherGameStats[playerNameString].getIp()
+            holder.h.text = pitcherGameStats[playerNameString].getH()
+            holder.er.text = pitcherGameStats[playerNameString].getEr()
+            holder.hr.text = pitcherGameStats[playerNameString].getHr()
+            holder.bb.text = pitcherGameStats[playerNameString].getBb()
+            holder.so.text = pitcherGameStats[playerNameString].getSo()
             holder.moreButton.setOnClickListener { showMoreButtonClicked(playerNameString) }
-
         }
 
         override fun getItemCount(): Int {

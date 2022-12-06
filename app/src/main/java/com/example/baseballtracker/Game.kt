@@ -56,7 +56,9 @@ class Game(var totalInnings: Int, var pitchTypes: Array<String>) {
             1 -> getBatterStats().singles++
             2 -> getBatterStats().doubles++
             3 -> getBatterStats().triples++
-            4 -> getBatterStats().homeRuns++
+            4 -> { getBatterStats().homeRuns++
+                getPitcherStats().homeruns++
+            }
         }
         getBatterStats().hits++
         getPitcherStats().hits++

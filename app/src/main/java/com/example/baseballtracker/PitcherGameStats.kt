@@ -31,11 +31,13 @@ class PitcherGameStats(pitchTypes: Array<String>, var inningsPerGame: Int) : jav
         pitchTypeBalls[pitchType] = pitchTypeBalls[pitchType]!! + 1
     }
 
-//    fun getEra() : String {
-//        var era = 0.0
-//        if (outs == 0) {
-//            era = earnedRuns * inningsPerGame * 3.0 / outs
-//
-//        }
-//    }
+    fun getEra() : String {
+        var era = 0.0
+        if (outs != 0) {
+            return (earnedRuns * inningsPerGame * 3.0 / outs).toString()
+        }
+        else {
+            return "0"
+        }
+    }
 }
