@@ -1,6 +1,6 @@
 package com.example.baseballtracker
 
-class PitcherGameStats(pitchTypes: Array<String>) {
+class PitcherGameStats(pitchTypes: Array<String>) : java.io.Serializable {
     var pitches = 0
     var inningsPerGame = 0
     var strikes = 0
