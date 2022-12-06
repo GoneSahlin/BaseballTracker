@@ -80,9 +80,11 @@ class PlayGameActivity : AppCompatActivity() {
 
         for (playerName in homePlayerNames) {
             game.homeLineup.addPlayer(playerName)
+            game.homePlayerStats[playerName] = PlayerGameStats()
         }
         for (playerName in awayPlayerNames) {
             game.awayLineup.addPlayer(playerName)
+            game.awayPlayerStats[playerName] = PlayerGameStats()
         }
         
 
@@ -211,7 +213,10 @@ class PlayGameActivity : AppCompatActivity() {
     }
 
     private fun onStatsButtonClicked() {
-        TODO("Not yet implemented")
+        val intent = Intent(this, GameStatsActivity::class.java)
+        intent.putExtra(HOME_PLAYER_STATS, game.homePlayerStats as HashMap<String, PlayerGameStats>)
+        intent.putExtra(AWAY_PLAYER_STATS, game.awayPlayerStats as HashMap<String, PlayerGameStats>)
+        startActivity(intent)
     }
 
     private fun onLineupButtonClicked() {

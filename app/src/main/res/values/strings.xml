@@ -62,4 +62,7 @@
     <string name="ball_grabbed">Ball grabbed</string>
     <string name="start">Start</string>
     <string name="_7">7</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="_0_000">0.000</string>
+    <string name="_0">0</string>
 </resources>

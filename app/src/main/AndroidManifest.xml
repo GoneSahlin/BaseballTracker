@@ -23,6 +23,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".GameStatsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".TeamActivity"
             android:exported="false"
             android:parentActivityName=".MainSettingsActivity">
