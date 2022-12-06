@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
@@ -245,6 +246,10 @@ class PlayGameActivity : AppCompatActivity() {
         val intent = Intent(this, GameStatsActivity::class.java)
         intent.putExtra(HOME_PLAYER_STATS, game.homePlayerStats as HashMap<String, PlayerGameStats>)
         intent.putExtra(AWAY_PLAYER_STATS, game.awayPlayerStats as HashMap<String, PlayerGameStats>)
+        intent.putExtra(HOME_PITCHER_STATS, game.homePitcherStats as HashMap<String, PitcherGameStats>)
+        intent.putExtra(AWAY_PITCHER_STATS, game.awayPitcherStats as HashMap<String, PitcherGameStats>)
+        Log.d("Test", game.homePitcherStats.toString())
+        Log.d("Test", game.awayPitcherStats.toString())
         startActivity(intent)
     }
 

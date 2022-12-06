@@ -65,4 +65,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="_0_000">0.000</string>
     <string name="_0">0</string>
+    <string name="_0_0">0.0</string>
+    <string name="_0_00">0.00</string>
 </resources>
