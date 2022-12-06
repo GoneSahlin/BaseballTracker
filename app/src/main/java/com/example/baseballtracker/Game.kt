@@ -2,7 +2,7 @@ package com.example.baseballtracker
 
 import java.util.*
 
-class Game(var totalInnings: Int) {
+class Game(var totalInnings: Int, var pitchTypes: Array<String>) {
     var homeName: String = "Home"
     var awayName: String = "Away"
     var homeLineup = Lineup()
@@ -18,6 +18,8 @@ class Game(var totalInnings: Int) {
     var runsAway: Int = 0
     var homePlayerStats: MutableMap<String, PlayerGameStats> = mutableMapOf()
     var awayPlayerStats: MutableMap<String, PlayerGameStats> = mutableMapOf()
+    var homePitcherStats: MutableMap<String, PitcherGameStats> = mutableMapOf()
+    var awayPitcherStats: MutableMap<String, PitcherGameStats> = mutableMapOf()
 //    var baseRunners: BaseRunners = BaseRunners()
 
 
@@ -36,7 +38,13 @@ class Game(var totalInnings: Int) {
         }
 
         // update stats
-        getBatterStats().rbis++
+        getPitcherStats().earnedRuns++
+        val lastBatter = getLastBatterName()
+        if (homeHitting) {
+            homePlayerStats[lastBatter]!!.rbis++
+        } else {
+            awayPlayerStats[lastBatter]!!.rbis++
+        }
     }
 
     fun baseHit(bases: Int) {
@@ -51,13 +59,15 @@ class Game(var totalInnings: Int) {
             4 -> getBatterStats().homeRuns++
         }
         getBatterStats().hits++
+        getPitcherStats().hits++
 
         nextBatter()
     }
 
     fun out() {
-        nextBatter()
+        getPitcherStats().outs++
 
+        nextBatter()
         outs++
 //        baseRunners.out(base)
         if (outs >= 3) {
@@ -83,15 +93,15 @@ class Game(var totalInnings: Int) {
     fun walk() {
         getBatterStats().walks++
         getBatterStats().atBats--
+        getPitcherStats().walks++
 //        val runnersScored = baseRunners.hit(1)
 
 //        runsScored(runnersScored)
         nextBatter()
-
-
     }
 
-    fun strike() {
+    fun strike(pitchType: String) {
+        getPitcherStats().addStrike(pitchType)
         strikes++
         if (strikes >= 3) {
             strikeOut()
@@ -99,12 +109,14 @@ class Game(var totalInnings: Int) {
     }
 
     fun strikeOut() {
+        getPitcherStats().strikeouts++
         getBatterStats().strikeOuts++
 
         out()
     }
 
-    fun ball() {
+    fun ball(pitchType: String) {
+        getPitcherStats().addBall(pitchType)
         balls++
         if (balls >= 4) {
             walk()
@@ -115,7 +127,8 @@ class Game(var totalInnings: Int) {
         if (strikes == 2) {
             return
         } else {
-            strike()
+            getPitcherStats().strikes++
+            strikes++
         }
     }
 
@@ -149,6 +162,14 @@ class Game(var totalInnings: Int) {
         return activePlayerStats[getBatterName()]!!
     }
 
+    fun getPitcherStats() : PitcherGameStats {
+        val activePitcherStats = getActivePitcherStats()
+        if (!activePitcherStats.containsKey(getPitcherName())) {
+            activePitcherStats[getPitcherName()] = PitcherGameStats(pitchTypes)
+        }
+        return activePitcherStats[getPitcherName()]!!
+    }
+
     fun getLastBatterName() : String {
         if (homeHitting) {
             return homeLineup.getPlayerNameByIndex(playerUpHomeIndex - 1)
@@ -179,5 +200,12 @@ class Game(var totalInnings: Int) {
             return homePlayerStats
         }
         return awayPlayerStats
+    }
+
+    fun getActivePitcherStats() : MutableMap<String, PitcherGameStats> {
+        if (homeHitting) {
+            return awayPitcherStats
+        }
+        return homePitcherStats
     }
 }

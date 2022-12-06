@@ -15,7 +15,7 @@ import kotlin.collections.HashMap
 
 class PlayGameActivity : AppCompatActivity() {
 
-    private var game = Game(9)
+    private lateinit var game: Game
     private lateinit var awayScoreTextView: TextView
     private lateinit var homeScoreTextView: TextView
     private lateinit var inningTextView: TextView
@@ -31,6 +31,8 @@ class PlayGameActivity : AppCompatActivity() {
     private lateinit var lineupButton: Button
     lateinit var homePlayerNames: List<String>
     lateinit var awayPlayerNames: List<String>
+    lateinit var pitchTypes: Array<String>
+
     private var strike = true
 //    private lateinit var strikeArray: Array<Int>
 //    private lateinit var ballArray: Array<Int>
@@ -55,6 +57,10 @@ class PlayGameActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_playgame)
+
+        pitchTypes = resources.getStringArray(R.array.pitch_types)
+
+        game = Game(9, pitchTypes)
 
         // find views
         awayScoreTextView = findViewById(R.id.away_score)
@@ -94,13 +100,6 @@ class PlayGameActivity : AppCompatActivity() {
         away_vec.forEach{
             temp2.add(it[0])
         }
-
-
-
-
-
-
-
 
         homePlayerNames = temp.toList()
         awayPlayerNames = temp2.toList()
@@ -180,12 +179,13 @@ class PlayGameActivity : AppCompatActivity() {
             val pitchTypeIndex = result.data!!.getIntExtra(PITCH_TYPE, -1)
 
             if (pitchTypeIndex != -1) {
+                val pitchType = pitchTypes[pitchTypeIndex]
                 if (strike) {
-                    game.strike()
+                    game.strike(pitchType)
 //                    strikeArray[pitchTypeIndex]++
 //                    allStrikes++
                 } else {
-                    game.ball()
+                    game.ball(pitchType)
 //                    ballArray[pitchTypeIndex]++
 //                    allBalls++
                 }
