@@ -6,13 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".PitcherStatsActivity">
 
+    <Button
+        android:id="@+id/back_button"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Back" />
+
     <TextView
         android:id="@+id/player_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Player Name"
         android:textSize="40dp"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/back_button"/>
 
     <LinearLayout
         android:layout_width="wrap_content"

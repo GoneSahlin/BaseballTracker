@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -20,6 +21,7 @@ class PitcherStatsActivity : AppCompatActivity() {
     lateinit var pitchTypeBalls: Map<String, Int>
     lateinit var recyclerView: RecyclerView
     lateinit var playerNameTextView: TextView
+    lateinit var backButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +32,8 @@ class PitcherStatsActivity : AppCompatActivity() {
         val playerName = intent.getStringExtra(PLAYER_NAME)
 
         recyclerView = findViewById(R.id.pitcher_recycler_view)
+        backButton = findViewById(R.id.back_button)
+        backButton.setOnClickListener { finish() }
         playerNameTextView = findViewById(R.id.player_name)
         playerNameTextView.text = playerName
 

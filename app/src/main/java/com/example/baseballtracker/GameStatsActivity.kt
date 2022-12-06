@@ -3,6 +3,7 @@ package com.example.baseballtracker
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.RadioGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
@@ -19,6 +20,7 @@ class GameStatsActivity : AppCompatActivity() {
     lateinit var awayPitchingGameStats: HashMap<String, PitcherGameStats>
     lateinit var homeAwayRadioGroup: RadioGroup
     lateinit var pitchingBattingRadioGroup: RadioGroup
+    lateinit var backButton: Button
     var homeActive = true
     var pitchingActive = true
 
@@ -34,6 +36,9 @@ class GameStatsActivity : AppCompatActivity() {
 
         homeAwayRadioGroup = findViewById(R.id.game_stats_home_away_radio_group)
         pitchingBattingRadioGroup = findViewById(R.id.game_stats_pitching_batting_radio_group)
+        backButton = findViewById(R.id.back_button)
+
+        backButton.setOnClickListener { onBackButtonClicked() }
 
         val homeBattingFragment: Fragment = BattingGameStatsFragment.Companion.newInstance(homeBattingGameStats)
 
@@ -53,6 +58,10 @@ class GameStatsActivity : AppCompatActivity() {
             replaceFragment()
 
         }
+    }
+
+    private fun onBackButtonClicked() {
+        finish()
     }
 
     private fun replaceFragment() {
