@@ -17,7 +17,8 @@
         tools:targetApi="31">
         <activity
             android:name=".StartActivitey"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".PracticeMainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

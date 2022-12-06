@@ -25,35 +25,35 @@
                 />
 
 
-            <Button
-                android:id="@+id/Pitching"
-                android:theme="@style/StartButtons"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:layout_below="@id/title"
-                android:text="@string/pitching"/>
-            <Button
-                android:id="@+id/Batting"
-                android:theme="@style/StartButtons"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:layout_below="@id/Pitching"
-                android:text="@string/batting"/>
-            <Button
-                android:id="@+id/distancetracker"
-                android:theme="@style/StartButtons"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:layout_below="@id/Batting"
-                android:text="@string/batting_distance"/>
+<!--            <Button-->
+<!--                android:id="@+id/Pitching"-->
+<!--                android:theme="@style/StartButtons"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_below="@id/title"-->
+<!--                android:text="@string/pitching"/>-->
+<!--            <Button-->
+<!--                android:id="@+id/Batting"-->
+<!--                android:theme="@style/StartButtons"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_below="@id/Pitching"-->
+<!--                android:text="@string/batting"/>-->
+<!--            <Button-->
+<!--                android:id="@+id/distancetracker"-->
+<!--                android:theme="@style/StartButtons"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_below="@id/Batting"-->
+<!--                android:text="@string/batting_distance"/>-->
 
-            <Button
-                android:id="@+id/settings"
-                android:theme="@style/StartButtons"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:layout_below="@id/distancetracker"
-                android:text="@string/settings"/>
+<!--            <Button-->
+<!--                android:id="@+id/settings"-->
+<!--                android:theme="@style/StartButtons"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_below="@id/distancetracker"-->
+<!--                android:text="@string/settings"/>-->
 
 
 
