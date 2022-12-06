@@ -31,58 +31,44 @@ class GameStatsActivity : AppCompatActivity() {
         homePitchingGameStats = intent.getSerializableExtra(HOME_PITCHER_STATS) as HashMap<String, PitcherGameStats>
         awayPitchingGameStats = intent.getSerializableExtra(AWAY_PITCHER_STATS) as HashMap<String, PitcherGameStats>
 
-        Log.d("Test2", homePitchingGameStats.toString())
-        Log.d("Test2", awayPitchingGameStats.toString())
 
         homeAwayRadioGroup = findViewById(R.id.game_stats_home_away_radio_group)
         pitchingBattingRadioGroup = findViewById(R.id.game_stats_pitching_batting_radio_group)
 
         val homeBattingFragment: Fragment = BattingGameStatsFragment.Companion.newInstance(homeBattingGameStats)
-        val awayBattingFragment: Fragment = BattingGameStatsFragment.Companion.newInstance(awayBattingGameStats)
-        val homePitchingFragment: Fragment = PitchingGameStatsFragment.Companion.newInstance(homePitchingGameStats)
-        val awayPitchingFragment: Fragment = PitchingGameStatsFragment.Companion.newInstance(awayPitchingGameStats)
 
         supportFragmentManager.beginTransaction().add(R.id.game_stats_fragment_container_view, homeBattingFragment).commit()
-        supportFragmentManager.beginTransaction().add(R.id.game_stats_fragment_container_view, awayBattingFragment).detach(awayBattingFragment).commit()
-        supportFragmentManager.beginTransaction().add(R.id.game_stats_fragment_container_view, homePitchingFragment).detach(homePitchingFragment).commit()
-        supportFragmentManager.beginTransaction().add(R.id.game_stats_fragment_container_view, awayPitchingFragment).detach(awayPitchingFragment).commit()
 
         // home away radio group
         homeAwayRadioGroup.setOnCheckedChangeListener { radioGroup, i ->
-            if (i == R.id.home_radio_button) {
-                homeActive = true
-                if (pitchingActive) {
-                    supportFragmentManager.beginTransaction().detach(awayPitchingFragment).attach(homePitchingFragment).commit()
-                } else {
-                    supportFragmentManager.beginTransaction().detach(awayBattingFragment).attach(homeBattingFragment).commit()
-                }
-            } else {
-                homeActive = false
-                if (pitchingActive) {
-                    supportFragmentManager.beginTransaction().detach(homePitchingFragment).attach(awayPitchingFragment).commit()
-                } else {
-                    supportFragmentManager.beginTransaction().detach(homeBattingFragment).attach(awayBattingFragment).commit()
-                }
-            }
+            homeActive = i == R.id.home_radio_button
+            replaceFragment()
+
         }
 
         // pitching hitting radio group
         pitchingBattingRadioGroup.setOnCheckedChangeListener { radioGroup, i ->
-            if (i == R.id.pitching_radio_button) {
-                pitchingActive = true
-                if (homeActive) {
-                    supportFragmentManager.beginTransaction().detach(homeBattingFragment).attach(homePitchingFragment).commit()
-                } else {
-                    supportFragmentManager.beginTransaction().detach(awayBattingFragment).attach(awayPitchingFragment).commit()
-                }
-            } else {
-                pitchingActive = false
-                if (homeActive) {
-                    supportFragmentManager.beginTransaction().detach(homePitchingFragment).attach(homeBattingFragment).commit()
-                } else {
-                    supportFragmentManager.beginTransaction().detach(awayPitchingFragment).attach(awayBattingFragment).commit()
-                }
-            }
+
+            pitchingActive = i == R.id.pitching_radio_button
+            replaceFragment()
+
         }
+    }
+
+    private fun replaceFragment() {
+        supportFragmentManager.beginTransaction().replace(R.id.game_stats_fragment_container_view, getSelectedFragment()).commit()
+    }
+
+    private fun getSelectedFragment() : Fragment {
+        if (pitchingActive) {
+            if (homeActive) {
+                return PitchingGameStatsFragment.newInstance(homePitchingGameStats)
+            }
+            return PitchingGameStatsFragment.newInstance(awayPitchingGameStats)
+        }
+        if (homeActive) {
+            return BattingGameStatsFragment.newInstance(homeBattingGameStats)
+        }
+        return BattingGameStatsFragment.newInstance(awayBattingGameStats)
     }
 }

@@ -61,7 +61,8 @@ class PlayGameActivity : AppCompatActivity() {
 
         pitchTypes = resources.getStringArray(R.array.pitch_types)
 
-        game = Game(9, pitchTypes)
+
+
 
         // find views
         awayScoreTextView = findViewById(R.id.away_score)
@@ -101,6 +102,7 @@ class PlayGameActivity : AppCompatActivity() {
         away_vec.forEach{
             temp2.add(it[0])
         }
+        game = Game(who.table[0][2].toInt(), pitchTypes)
 
         homePlayerNames = temp.toList()
         awayPlayerNames = temp2.toList()

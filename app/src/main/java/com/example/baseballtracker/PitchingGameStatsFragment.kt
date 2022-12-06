@@ -1,14 +1,22 @@
 package com.example.baseballtracker
 
 import android.content.Context
+
+import android.content.Intent
+
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+
+import android.widget.Button
+
+
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -60,12 +68,15 @@ class PitchingGameStatsFragment : Fragment() {
     ) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
         class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
             val playerName: TextView = view.findViewById(R.id.player_name)
-//            val avg: TextView = view.findViewById(R.id.avg)
-//            val obp: TextView = view.findViewById(R.id.obp)
-//            val abs: TextView = view.findViewById(R.id.abs)
-//            val ops: TextView = view.findViewById(R.id.ops)
-//            val hrs: TextView = view.findViewById(R.id.hrs)
-//            val ks: TextView = view.findViewById(R.id.ks)
+            val era: TextView = view.findViewById(R.id.era)
+            val ip: TextView = view.findViewById(R.id.ip)
+            val h: TextView = view.findViewById(R.id.h)
+            val er: TextView = view.findViewById(R.id.er)
+            val hr: TextView = view.findViewById(R.id.hr)
+            val bb: TextView = view.findViewById(R.id.bb)
+            val so: TextView = view.findViewById(R.id.so)
+            val moreButton: Button = view.findViewById(R.id.show_more_button)
+
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -78,16 +89,22 @@ class PitchingGameStatsFragment : Fragment() {
         override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
             val playerNameString = pitcherGameStats.keys.toList()[position]
             holder.playerName.text = playerNameString
-//            holder.avg.text = playerGameStats[playerNameString]!!.getAvg()
-//            holder.obp.text = playerGameStats[playerNameString]!!.getObp()
-//            holder.abs.text = playerGameStats[playerNameString]!!.getAb()
-//            holder.ops.text = playerGameStats[playerNameString]!!.getOps()
-//            holder.hrs.text = playerGameStats[playerNameString]!!.getHr()
-//            holder.ks.text = playerGameStats[playerNameString]!!.getK()
+
+            holder.moreButton.setOnClickListener { showMoreButtonClicked(playerNameString) }
+
         }
 
         override fun getItemCount(): Int {
             return pitcherGameStats.size
+        }
+
+
+        fun showMoreButtonClicked(playerNameString: String) {
+            val intent = Intent(context, PitcherStatsActivity::class.java)
+//            intent.putExtra(PITCH_TYPE_BALLS, game.homePlayerStats as HashMap<String, Int>)
+//            intent.putExtra(PITCH_TYPE_STRIKES,  as HashMap<String, Int>)
+
+            context.startActivity(intent)
         }
 
     }

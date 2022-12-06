@@ -1,36 +1,24 @@
 package com.example.baseballtracker
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
+import java.util.*
 
 class PitchingActivity : AppCompatActivity() {
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pitching)
 
-//        var spinner = findViewById<Spinner>(R.id.spinner)
-//        ArrayAdapter.createFromResource(
-//            this,
-//            R.array.pitch_types,
-//            android.R.layout.simple_spinner_item
-//        ).also { adapter ->
-//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//            spinner.adapter = adapter
-//        }
-
-//        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onNothingSelected(parent: AdapterView<>?) {
-//            }
-//
-//            override fun onItemSelected(parent: AdapterView<>?, view: View?, position: Int, id: Long) {
-//                val spinnerSelected = position
-//            }
-
-
+       var teamspian = findViewById<Spinner>(R.id.practiceteam)
+        updatespinner(teamspian,"teamlist")
+//        findViewById<Spinner>(R.id.practiceteam).onItemSelectedListener = selector();
 
 
         // TODO: Get results back
@@ -67,4 +55,25 @@ class PitchingActivity : AppCompatActivity() {
 
 
     }
+
+
+
+    fun updatespinner(spin : Spinner,s:String){
+
+        var temp = Vector<String>()
+        var team = TableManager(this, s)
+        team.table.forEach{
+            temp.add(it[0])
+        }
+        if (team.table.size>-1){
+
+            var name = temp.toList()
+
+            var homePitcherSpinnerAdapter =
+                ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, name)
+            spin.adapter = homePitcherSpinnerAdapter
+        }
+
+    }
+//    fun selector(): AdapterView.OnItemSelectedListener? {}
 }

@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Spinner
 import java.io.File
 import java.util.*
@@ -28,7 +29,9 @@ class StartActivitey : AppCompatActivity() {
         table.table.removeAllElements()
         names.add(findViewById<Spinner>(R.id.home_team).selectedItem.toString())
         names.add(findViewById<Spinner>(R.id.away_team).selectedItem.toString())
+        names.add(findViewById<EditText>(R.id.innings).text.toString() )
         table.table.add(names)
+
         table.SaveFile()
 
 

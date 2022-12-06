@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/item_list_container"
+
+    android:id="@+id/pitching_item_list_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -15,55 +16,63 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="120dp"
+
+            android:layout_width="100dp"
+
             android:layout_height="wrap_content"
             android:textSize="@dimen/batting_stat_text_size"
             android:text="Player Name" />
 
         <TextView
-            android:layout_width="@dimen/batting_stat_width"
+
+            android:layout_width="@dimen/pitching_stat_width"
             android:layout_height="wrap_content"
             android:textSize="@dimen/batting_stat_text_size"
-            android:text="AVG" />
+            android:text="ERA" />
 
 
         <TextView
-            android:layout_width="@dimen/batting_stat_width"
+            android:layout_width="@dimen/pitching_stat_width"
             android:layout_height="wrap_content"
             android:textSize="@dimen/batting_stat_text_size"
-            android:text="OPB" />
+            android:text="IP" />
 
 
         <TextView
-            android:layout_width="@dimen/batting_stat_width"
+            android:layout_width="@dimen/pitching_stat_width"
             android:layout_height="wrap_content"
             android:textSize="@dimen/batting_stat_text_size"
-            android:text="AB" />
+            android:text="H" />
 
 
         <TextView
-            android:layout_width="@dimen/batting_stat_width"
+            android:layout_width="@dimen/pitching_stat_width"
             android:layout_height="wrap_content"
             android:textSize="@dimen/batting_stat_text_size"
-            android:text="OPS" />
+            android:text="ER" />
 
         <TextView
-            android:layout_width="@dimen/batting_stat_width"
+            android:layout_width="@dimen/pitching_stat_width"
+
             android:layout_height="wrap_content"
             android:textSize="@dimen/batting_stat_text_size"
             android:text="HR" />
 
         <TextView
-            android:layout_width="@dimen/batting_stat_width"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/batting_stat_text_size"
-            android:text="K" />
 
-        <TextView
-            android:layout_width="@dimen/batting_stat_width"
+            android:layout_width="@dimen/pitching_stat_width"
+
             android:layout_height="wrap_content"
             android:textSize="@dimen/batting_stat_text_size"
             android:text="BB" />
+
+
+        <TextView
+            android:layout_width="@dimen/pitching_stat_width"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/batting_stat_text_size"
+            android:text="SO" />
+
 
     </LinearLayout>
 
