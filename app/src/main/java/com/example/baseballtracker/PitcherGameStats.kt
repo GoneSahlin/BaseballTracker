@@ -1,8 +1,7 @@
 package com.example.baseballtracker
 
-class PitcherGameStats(pitchTypes: Array<String>) : java.io.Serializable {
+class PitcherGameStats(pitchTypes: Array<String>, var inningsPerGame: Int) : java.io.Serializable {
     var pitches = 0
-    var inningsPerGame = 0
     var strikes = 0
     var balls = 0
     var outs = 0
@@ -31,4 +30,12 @@ class PitcherGameStats(pitchTypes: Array<String>) : java.io.Serializable {
         balls++
         pitchTypeBalls[pitchType] = pitchTypeBalls[pitchType]!! + 1
     }
+
+//    fun getEra() : String {
+//        var era = 0.0
+//        if (outs == 0) {
+//            era = earnedRuns * inningsPerGame * 3.0 / outs
+//
+//        }
+//    }
 }

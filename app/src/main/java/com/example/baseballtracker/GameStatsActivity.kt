@@ -35,14 +35,7 @@ class GameStatsActivity : AppCompatActivity() {
         pitchingBattingRadioGroup = findViewById(R.id.game_stats_pitching_batting_radio_group)
 
         val homeBattingFragment: Fragment = BattingGameStatsFragment.Companion.newInstance(homeBattingGameStats)
-//        val awayBattingFragment: Fragment = BattingGameStatsFragment.Companion.newInstance(awayBattingGameStats)
-//        val homePitchingFragment: Fragment = PitchingGameStatsFragment.Companion.newInstance(homePitchingGameStats)
-//        val awayPitchingFragment: Fragment = PitchingGameStatsFragment.Companion.newInstance(awayPitchingGameStats)
-
         supportFragmentManager.beginTransaction().add(R.id.game_stats_fragment_container_view, homeBattingFragment).commit()
-//        supportFragmentManager.beginTransaction().add(R.id.game_stats_fragment_container_view, awayBattingFragment).hide(awayBattingFragment).commit()
-//        supportFragmentManager.beginTransaction().add(R.id.game_stats_fragment_container_view, homePitchingFragment).hide(homePitchingFragment).commit()
-//        supportFragmentManager.beginTransaction().add(R.id.game_stats_fragment_container_view, awayPitchingFragment).hide(awayPitchingFragment).commit()
 
         // home away radio group
         homeAwayRadioGroup.setOnCheckedChangeListener { radioGroup, i ->

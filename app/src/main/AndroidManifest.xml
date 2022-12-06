@@ -16,6 +16,13 @@
         android:theme="@style/Theme.BaseballTracker"
         tools:targetApi="31">
         <activity
+            android:name=".PitcherStatsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".StartActivitey"
             android:exported="false"
             android:parentActivityName=".PracticeMainActivity">
@@ -24,7 +31,6 @@
                 android:value="" />
         </activity>
         <activity
-
             android:name=".GameStatsActivity"
             android:exported="false"
             android:parentActivityName=".PlayGameActivity">

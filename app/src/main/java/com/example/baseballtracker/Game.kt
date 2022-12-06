@@ -165,7 +165,7 @@ class Game(var totalInnings: Int, var pitchTypes: Array<String>) {
     fun getPitcherStats() : PitcherGameStats {
         val activePitcherStats = getActivePitcherStats()
         if (!activePitcherStats.containsKey(getPitcherName())) {
-            activePitcherStats[getPitcherName()] = PitcherGameStats(pitchTypes)
+            activePitcherStats[getPitcherName()] = PitcherGameStats(pitchTypes, totalInnings)
         }
         return activePitcherStats[getPitcherName()]!!
     }
