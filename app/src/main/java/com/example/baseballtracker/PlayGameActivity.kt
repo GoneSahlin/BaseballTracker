@@ -4,9 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import java.util.*
+import kotlin.collections.HashMap
 
 
 class PlayGameActivity : AppCompatActivity() {
@@ -25,8 +29,8 @@ class PlayGameActivity : AppCompatActivity() {
     private lateinit var runScoredButton: Button
     private lateinit var statsButton: Button
     private lateinit var lineupButton: Button
-    lateinit var homePlayerNames: Array<String>
-    lateinit var awayPlayerNames: Array<String>
+    lateinit var homePlayerNames: List<String>
+    lateinit var awayPlayerNames: List<String>
     private var strike = true
 //    private lateinit var strikeArray: Array<Int>
 //    private lateinit var ballArray: Array<Int>
@@ -75,8 +79,31 @@ class PlayGameActivity : AppCompatActivity() {
         statsButton.setOnClickListener { onStatsButtonClicked() }
         lineupButton.setOnClickListener { onLineupButtonClicked() }
 
-        homePlayerNames = arrayOf<String>("Zach", "Caleb", "Player 1", "Player 2")
-        awayPlayerNames = arrayOf<String>("Player 3", "Player 4")
+        var who = TableManager(this, "teamsplaying")
+        var home = who.table[0][0]
+        var away = who.table[0][1]
+        var home_vec = TableManager(this, home).table
+
+        var temp = Vector<String>()
+        home_vec.forEach{
+            temp.add(it[0])
+        }
+
+        var away_vec = TableManager(this, away).table
+        var temp2 = Vector<String>()
+        away_vec.forEach{
+            temp2.add(it[0])
+        }
+
+
+
+
+
+
+
+
+        homePlayerNames = temp.toList()
+        awayPlayerNames = temp2.toList()
 
         for (playerName in homePlayerNames) {
             game.homeLineup.addPlayer(playerName)
@@ -223,8 +250,8 @@ class PlayGameActivity : AppCompatActivity() {
         val intent = Intent(this,LineupActivity::class.java)
         intent.putExtra(HOME_LINEUP, game.homeLineup)
         intent.putExtra(AWAY_LINEUP, game.awayLineup)
-        intent.putExtra(HOME_PLAYER_NAMES, homePlayerNames)
-        intent.putExtra(AWAY_PLAYER_NAMES, awayPlayerNames)
+        intent.putExtra(HOME_PLAYER_NAMES, homePlayerNames.toTypedArray())
+        intent.putExtra(AWAY_PLAYER_NAMES, awayPlayerNames.toTypedArray())
 
         lineupResultLauncher.launch(intent)
     }
@@ -270,15 +297,24 @@ class PlayGameActivity : AppCompatActivity() {
         pitcherTextView.text = getString(R.string.pitcher, game.getPitcherName())
     }
 
-//    private fun runForAwayClicked() {
-//        runsAway++
-//        displayScore()
-//    }
-//
-//    private fun runForHomeClicked() {
-//        runsHome++
-//        displayScore()
-//    }
+    fun updatespinner(spin : Spinner,file:String){
+
+        var temp = Vector<String>()
+        var team = TableManager(this, file)
+        team.table.forEach{
+            temp.add(it[0])
+        }
+        if (team.table.size>-1){
+
+            var name = temp.toList()
+
+            var homePitcherSpinnerAdapter =
+                ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, name)
+            spin.adapter = homePitcherSpinnerAdapter
+        }
+
+    }
+
 
 
 }

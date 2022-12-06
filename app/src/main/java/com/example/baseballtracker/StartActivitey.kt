@@ -23,6 +23,15 @@ class StartActivitey : AppCompatActivity() {
     updatespinner(findViewById<Spinner>(R.id.away_team))
     }
     private fun start() {
+        var table = TableManager(this, "teamsplaying")
+        var names = Vector<String>()
+        table.table.removeAllElements()
+        names.add(findViewById<Spinner>(R.id.home_team).selectedItem.toString())
+        names.add(findViewById<Spinner>(R.id.away_team).selectedItem.toString())
+        table.table.add(names)
+        table.SaveFile()
+
+
         val intent = Intent(this,PlayGameActivity::class.java)
         startActivity(intent)
     }
