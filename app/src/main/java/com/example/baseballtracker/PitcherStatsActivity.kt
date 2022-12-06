@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 const val PITCH_TYPE_STRIKES = "com.example.baseballtracker.pitch_type_strikes"
 const val PITCH_TYPE_BALLS = "com.example.baseballtracker.pitch_type_balls"
+const val PLAYER_NAME = "com.example.baseballtracker.player_name"
 
 
 
@@ -18,15 +19,19 @@ class PitcherStatsActivity : AppCompatActivity() {
     lateinit var pitchTypeStrikes: Map<String, Int>
     lateinit var pitchTypeBalls: Map<String, Int>
     lateinit var recyclerView: RecyclerView
+    lateinit var playerNameTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pitcher_stats)
 
-        pitchTypeStrikes = intent.getSerializableExtra(PITCH_TYPE_STRIKES) as Map<String, Int>
-        pitchTypeBalls = intent.getSerializableExtra(PITCH_TYPE_BALLS) as Map<String, Int>
+        pitchTypeStrikes = intent.getSerializableExtra(PITCH_TYPE_STRIKES) as HashMap<String, Int>
+        pitchTypeBalls = intent.getSerializableExtra(PITCH_TYPE_BALLS) as HashMap<String, Int>
+        val playerName = intent.getStringExtra(PLAYER_NAME)
 
         recyclerView = findViewById(R.id.pitcher_recycler_view)
+        playerNameTextView = findViewById(R.id.player_name)
+        playerNameTextView.text = playerName
 
         recyclerView.adapter = ItemAdapter(
             this,

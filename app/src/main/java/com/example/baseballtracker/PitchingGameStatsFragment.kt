@@ -98,14 +98,12 @@ class PitchingGameStatsFragment : Fragment() {
             return pitcherGameStats.size
         }
 
-
         fun showMoreButtonClicked(playerNameString: String) {
             val intent = Intent(context, PitcherStatsActivity::class.java)
-//            intent.putExtra(PITCH_TYPE_BALLS, game.homePlayerStats as HashMap<String, Int>)
-//            intent.putExtra(PITCH_TYPE_STRIKES,  as HashMap<String, Int>)
-
+            intent.putExtra(PITCH_TYPE_BALLS, pitcherGameStats[playerNameString]!!.pitchTypeBalls as HashMap<String, Int>)
+            intent.putExtra(PITCH_TYPE_STRIKES, pitcherGameStats[playerNameString]!!.pitchTypeStrikes as HashMap<String, Int>)
+            intent.putExtra(PLAYER_NAME, playerNameString)
             context.startActivity(intent)
         }
-
     }
 }
