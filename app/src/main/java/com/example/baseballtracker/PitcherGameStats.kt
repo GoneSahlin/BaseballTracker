@@ -35,7 +35,7 @@ class PitcherGameStats(pitchTypes: Array<String>, var inningsPerGame: Int) : jav
     fun getEra() : String {
         var era = 0.0
         if (outs != 0) {
-            return String.format("%.3f",(earnedRuns * inningsPerGame * 3.0 / outs).toString())
+            return String.format("%.3f", earnedRuns * inningsPerGame * 3.0 / outs)
         }
         else {
             return "0.00"
@@ -43,22 +43,22 @@ class PitcherGameStats(pitchTypes: Array<String>, var inningsPerGame: Int) : jav
     }
 
     fun getIp():String{
-        return String.format("%.1f",(outs/3).toString())
+        return String.format("%.1f",outs / 3.0)
     }
 
     fun getH():String{
-        return String.format("%.1f",hits.toString())
+        return hits.toString()
     }
     fun getEr():String{
-        return String.format("%.1f",earnedRuns.toString())
+        return earnedRuns.toString()
     }
     fun getHr():String{
-        return String.format("%.1f",homeruns.toString())
+        return homeruns.toString()
     }
     fun getBb():String{
-        return String.format("%.1f",walks.toString())
+        return walks.toString()
     }
     fun getSo():String{
-        return String.format("%.1f",strikeouts.toString())
+        return strikeouts.toString()
     }
 }
