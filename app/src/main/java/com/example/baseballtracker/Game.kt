@@ -172,9 +172,16 @@ class Game(var totalInnings: Int, var pitchTypes: Array<String>) {
 
     fun getLastBatterName() : String {
         if (homeHitting) {
-            return homeLineup.getPlayerNameByIndex(playerUpHomeIndex - 1)
+            if (playerUpHomeIndex != 0) {
+                return homeLineup.getPlayerNameByIndex(playerUpHomeIndex - 1)
+            }
+            return homeLineup.getPlayerNameByIndex(homeLineup.battingOrder.size - 1)
+
         }
-        return awayLineup.getPlayerNameByIndex(playerUpAwayIndex - 1)
+        if (playerUpAwayIndex != 0) {
+            return awayLineup.getPlayerNameByIndex(playerUpAwayIndex - 1)
+        }
+        return awayLineup.getPlayerNameByIndex(awayLineup.battingOrder.size - 1)
     }
 
     fun getBatterName() : String {
